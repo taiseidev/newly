@@ -2,7 +2,7 @@ name: nost
 description: A unique storytelling travel app.
 
 publish_to: 'none'
-version: 1.0.0+14
+version: 1.0.0+15
 
 environment:
   sdk: '>=3.1.4 <4.0.0'
