@@ -13,7 +13,7 @@ final scaffoldMessengerKeyProvider = Provider(
 final class App extends ConsumerWidget {
   const App({super.key});
 
-  static const appName = 'Nost';
+  static const appName = 'Newly';
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

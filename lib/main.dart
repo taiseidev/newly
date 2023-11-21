@@ -14,7 +14,7 @@ Future<void> main() async {
   LocaleSettings.useDeviceLocale();
 
   // ログの設定
-  NostLogger.config();
+  NewlyLogger.config();
 
   logger.i('env: ${Flavor.environment}');
 
