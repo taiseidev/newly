@@ -1,6 +1,6 @@
 {
     "flavor": "dev",
-    "appName": "Nost Dev",
-    "appId": "com.nost.nost",
+    "appName": "Newly Dev",
+    "appId": "app.product.Newly",
     "appIdSuffix": ".dev"
 }

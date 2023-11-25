@@ -9,6 +9,7 @@ part of 'main_route.dart';
 List<RouteBase> get $appRoutes => [
       $policyRoute,
       $contactRoute,
+      $startRoute,
       $mainRoute,
     ];
 
@@ -58,6 +59,29 @@ extension $ContactRouteExtension on ContactRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
+RouteBase get $startRoute => GoRouteData.$route(
+      path: '/start',
+      parentNavigatorKey: StartRoute.$parentNavigatorKey,
+      factory: $StartRouteExtension._fromState,
+    );
+
+extension $StartRouteExtension on StartRoute {
+  static StartRoute _fromState(GoRouterState state) => const StartRoute();
+
+  String get location => GoRouteData.$location(
+        '/start',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
 RouteBase get $mainRoute => StatefulShellRouteData.$route(
       parentNavigatorKey: MainRoute.$parentNavigatorKey,
       restorationScopeId: MainRoute.$restorationScopeId,
@@ -90,16 +114,6 @@ RouteBase get $mainRoute => StatefulShellRouteData.$route(
             GoRouteData.$route(
               path: '/community',
               factory: $CommunityRouteExtension._fromState,
-            ),
-          ],
-        ),
-        StatefulShellBranchData.$branch(
-          navigatorKey: StoreBranch.$navigatorKey,
-          restorationScopeId: StoreBranch.$restorationScopeId,
-          routes: [
-            GoRouteData.$route(
-              path: '/store',
-              factory: $StoreRouteExtension._fromState,
             ),
           ],
         ),
@@ -160,23 +174,6 @@ extension $CommunityRouteExtension on CommunityRoute {
 
   String get location => GoRouteData.$location(
         '/community',
-      );
-
-  void go(BuildContext context) => context.go(location);
-
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  void replace(BuildContext context) => context.replace(location);
-}
-
-extension $StoreRouteExtension on StoreRoute {
-  static StoreRoute _fromState(GoRouterState state) => const StoreRoute();
-
-  String get location => GoRouteData.$location(
-        '/store',
       );
 
   void go(BuildContext context) => context.go(location);

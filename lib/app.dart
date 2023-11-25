@@ -19,6 +19,7 @@ final class App extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(routerProvider);
     final isLoading = ref.watch(loadingNotifierProvider);
+
     return MaterialApp.router(
       title: appName,
       debugShowCheckedModeBanner: false,
@@ -26,6 +27,7 @@ final class App extends ConsumerWidget {
       scaffoldMessengerKey: ref.watch(scaffoldMessengerKeyProvider),
       locale: TranslationProvider.of(context).flutterLocale,
       // builder: DevicePreview.appBuilder,
+      
       supportedLocales: AppLocaleUtils.supportedLocales,
       localizationsDelegates: GlobalMaterialLocalizations.delegates,
       theme: getLightTheme(),

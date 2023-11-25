@@ -5,7 +5,17 @@ import 'package:nost/app.dart';
 import 'package:nost/core/i18n/strings.g.dart';
 import 'package:nost/core/utils/flavor.dart';
 import 'package:nost/core/utils/logger.dart';
+import 'package:nost/features/activities/domain/repositories/activity_repository.dart';
+import 'package:nost/features/activities/infrastructure/repositories/supabase_activity_repository.dart';
+import 'package:nost/features/auth/domain/repositories/auth_repository.dart';
+import 'package:nost/features/auth/infrastructure/repositories/supagase_auth_repository.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+
+part 'main.g.dart';
+
+@riverpod
+User? user(UserRef ref) => throw UnimplementedError();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,15 +29,26 @@ Future<void> main() async {
   logger.i('env: ${Flavor.environment}');
 
   await Supabase.initialize(
-    url: Flavor.apiKey,
-    anonKey: Flavor.projectUrl,
+    url: Flavor.projectUrl,
+    anonKey: Flavor.apiKey,
   );
+
+  final supabase = Supabase.instance.client;
 
   runApp(
     DevicePreview(
       builder: (context) => TranslationProvider(
-        child: const ProviderScope(
-          child: App(),
+        child: ProviderScope(
+          overrides: [
+            authRepositoryProvider.overrideWith(
+              (_) => SupabaseAuthRepository(supabase: supabase),
+            ),
+            activityRepositoryProvider.overrideWith(
+              (_) => SupabaseActivityRepository(supabase: supabase),
+            ),
+            userProvider.overrideWith((ref) => supabase.auth.currentUser),
+          ],
+          child: const App(),
         ),
       ),
     ),

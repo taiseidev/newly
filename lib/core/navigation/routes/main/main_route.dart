@@ -6,7 +6,7 @@ import 'package:nost/core/navigation/routes/branches/community_branch.dart';
 import 'package:nost/core/navigation/routes/branches/home_branch.dart';
 import 'package:nost/core/navigation/routes/branches/my_page_branch.dart';
 import 'package:nost/core/navigation/routes/branches/search_branch.dart';
-import 'package:nost/core/navigation/routes/branches/store_branch.dart';
+import 'package:nost/core/ui/pages/start/start_page.dart';
 
 part 'main_route.g.dart';
 
@@ -36,12 +36,23 @@ class ContactRoute extends GoRouteData {
   static final GlobalKey<NavigatorState> $parentNavigatorKey = rootNavigatorKey;
 }
 
+@TypedGoRoute<StartRoute>(
+  path: '/start',
+)
+class StartRoute extends GoRouteData {
+  const StartRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) => const StartPage();
+
+  static final GlobalKey<NavigatorState> $parentNavigatorKey = rootNavigatorKey;
+}
+
 @TypedStatefulShellRoute<MainRoute>(
   branches: <TypedStatefulShellBranch<StatefulShellBranchData>>[
     homeStatefulShellBranch,
     searchStatefulShellBranch,
     communityStatefulShellBranch,
-    storeStatefulShellBranch,
     myPageStatefulShellBranch,
   ],
 )
@@ -80,7 +91,6 @@ final class ScaffoldWithNaviBar extends StatelessWidget {
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'ホーム'),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: '探す'),
           BottomNavigationBarItem(icon: Icon(Icons.co2), label: 'コミュニティ'),
-          BottomNavigationBarItem(icon: Icon(Icons.store), label: 'ストア'),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_balance),
             label: 'マイページ',
