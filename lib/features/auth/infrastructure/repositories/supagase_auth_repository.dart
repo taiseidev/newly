@@ -13,7 +13,7 @@ class SupabaseAuthRepository extends AuthRepository {
     await supabase.auth.signUp(
       email: email,
       password: password,
-      data: {'user_name': 'テストさん'}, // メタデータを登録する場合、dataフィールドに渡す
+      data: {'user_name': 'テストさん'},
     );
   }
 

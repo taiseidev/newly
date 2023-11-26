@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nost/app.dart';
 import 'package:nost/core/navigation/router/router.dart';
 import 'package:nost/core/utils/loading.dart';
+import 'package:nost/exceptions/app_exception.dart';
 
 extension WidgetRefEx on WidgetRef {
   /// AsyncValueを良い感じにハンドリングする
@@ -42,8 +43,9 @@ extension WidgetRefEx on WidgetRef {
               // エラーが発生したらエラーダイアログを表示する
               await showDialog<void>(
                 context: rootNavigatorKey.currentContext!,
-                builder: (context) => const AlertDialog(
-                  title: Text('エラーが発生しました。'),
+                builder: (context) => AlertDialog(
+                  title: Text((e as AppException).title!),
+                  content: Text(e.detail!),
                 ),
               );
             },

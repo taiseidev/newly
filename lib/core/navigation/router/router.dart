@@ -13,7 +13,7 @@ final rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'rootNavigator');
 GoRouter router(RouterRef ref) => GoRouter(
       routes: $appRoutes,
       debugLogDiagnostics: true,
-      initialLocation: '/home',
+      initialLocation: '/start',
       navigatorKey: rootNavigatorKey,
       redirect: (context, state) {
         final user = supabase.auth.currentUser;
