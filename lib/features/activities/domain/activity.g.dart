@@ -20,7 +20,7 @@ _$ActivityImpl _$$ActivityImplFromJson(Map<String, dynamic> json) =>
             'title',
             'description',
             'image_url',
-            'date',
+            'date'
           ],
         );
         final val = _$ActivityImpl(
@@ -31,14 +31,14 @@ _$ActivityImpl _$$ActivityImplFromJson(Map<String, dynamic> json) =>
           description: $checkedConvert('description', (v) => v as String?),
           imageUrl: $checkedConvert('image_url', (v) => v as String?),
           date: $checkedConvert(
-              'date', (v) => v == null ? null : DateTime.parse(v as String),),
+              'date', (v) => v == null ? null : DateTime.parse(v as String)),
         );
         return val;
       },
       fieldKeyMap: const {
         'activityId': 'activity_id',
         'userId': 'user_id',
-        'imageUrl': 'image_url',
+        'imageUrl': 'image_url'
       },
     );
 

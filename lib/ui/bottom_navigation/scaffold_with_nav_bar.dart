@@ -20,7 +20,7 @@ final class ScaffoldWithNavBar extends StatelessWidget {
       backdrop: Container(
         width: double.infinity,
         height: double.infinity,
-        color: const Color.fromARGB(137, 227, 227, 227),
+        color: Colors.grey,
       ),
       controller: _advancedDrawerController,
       animationCurve: Curves.ease,
@@ -32,19 +32,39 @@ final class ScaffoldWithNavBar extends StatelessWidget {
         padding: const EdgeInsets.only(left: 24),
         child: SizedBox(
           height: MediaQuery.of(context).size.height * 0.8,
-          child: const Column(
+          child: Column(
             children: [
               Row(
                 children: [
-                  Text(
-                    'Newly',
+                  const Text(
+                    'ロゴを挿入する',
                     style: TextStyle(
+                      color: Colors.white,
                       fontWeight: FontWeight.bold,
-                      fontSize: 36,
+                      fontSize: 18,
+                    ),
+                  ),
+                  const Spacer(),
+                  IconButton(
+                    onPressed: _advancedDrawerController.toggleDrawer,
+                    icon: const FaIcon(
+                      FontAwesomeIcons.xmark,
+                      color: Colors.white,
                     ),
                   ),
                 ],
               ),
+              const SizedBox(
+                height: 16,
+              ),
+              const SettingItem(title: '通知設定'),
+              const SettingItem(title: '通知設定'),
+              const SettingItem(title: '通知設定'),
+              const SettingItem(title: '通知設定'),
+              const SettingItem(title: '通知設定'),
+              const SettingItem(title: '通知設定'),
+              const SettingItem(title: '通知設定'),
+              const SettingItem(title: '通知設定'),
             ],
           ),
         ),
@@ -126,6 +146,48 @@ final class ScaffoldWithNavBar extends StatelessWidget {
               initialLocation: index == navigationShell.currentIndex,
             );
           },
+        ),
+      ),
+    );
+  }
+}
+
+class SettingItem extends StatelessWidget {
+  const SettingItem({
+    required this.title,
+    super.key,
+  });
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16),
+      child: InkWell(
+        onTap: () {},
+        child: Row(
+          children: [
+            const FaIcon(
+              FontAwesomeIcons.solidBell,
+              size: 20,
+              color: Colors.white,
+            ),
+            const SizedBox(width: 40),
+            Text(
+              title,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+            const Spacer(),
+            const FaIcon(
+              FontAwesomeIcons.angleRight,
+              size: 16,
+              color: Colors.white,
+            ),
+          ],
         ),
       ),
     );
