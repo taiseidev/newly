@@ -8,6 +8,7 @@ class Activity with _$Activity {
   factory Activity({
     String? activityId,
     String? userId,
+    String? icon,
     String? title,
     String? description,
     String? imageUrl,

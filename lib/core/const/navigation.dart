@@ -7,6 +7,11 @@ class MainRouteConst {
   static const myPageRoutePath = '/my_page';
 }
 
+class StartRouteConst {
+  const StartRouteConst._();
+  static const startRoutePath = '/start';
+}
+
 class PolicyRouteConst {
   const PolicyRouteConst._();
   static const policyRoutePath = '/policy';

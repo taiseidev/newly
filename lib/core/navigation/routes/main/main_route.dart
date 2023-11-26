@@ -4,9 +4,10 @@ import 'package:nost/core/const/navigation.dart';
 import 'package:nost/core/navigation/router/router.dart';
 import 'package:nost/core/navigation/routes/branches/community_branch.dart';
 import 'package:nost/core/navigation/routes/branches/home_branch.dart';
-import 'package:nost/core/navigation/routes/branches/my_page_branch.dart';
 import 'package:nost/core/navigation/routes/branches/search_branch.dart';
-import 'package:nost/core/ui/pages/start/start_page.dart';
+import 'package:nost/ui/bottom_navigation/scaffold_with_nav_bar.dart';
+import 'package:nost/ui/calendar/calendar_page.dart';
+import 'package:nost/ui/start/start_page.dart';
 
 part 'main_route.g.dart';
 
@@ -19,6 +20,19 @@ class PolicyRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const SizedBox.shrink();
+
+  static final GlobalKey<NavigatorState> $parentNavigatorKey = rootNavigatorKey;
+}
+
+@TypedGoRoute<CalendarRoute>(
+  path: '/calendar',
+)
+class CalendarRoute extends GoRouteData {
+  const CalendarRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const CalendarPage();
 
   static final GlobalKey<NavigatorState> $parentNavigatorKey = rootNavigatorKey;
 }
@@ -37,7 +51,7 @@ class ContactRoute extends GoRouteData {
 }
 
 @TypedGoRoute<StartRoute>(
-  path: '/start',
+  path: StartRouteConst.startRoutePath,
 )
 class StartRoute extends GoRouteData {
   const StartRoute();
@@ -53,7 +67,6 @@ class StartRoute extends GoRouteData {
     homeStatefulShellBranch,
     searchStatefulShellBranch,
     communityStatefulShellBranch,
-    myPageStatefulShellBranch,
   ],
 )
 final class MainRoute extends StatefulShellRouteData {
@@ -65,46 +78,11 @@ final class MainRoute extends StatefulShellRouteData {
     GoRouterState state,
     StatefulNavigationShell navigationShell,
   ) {
-    return ScaffoldWithNaviBar(
+    return ScaffoldWithNavBar(
       navigationShell: navigationShell,
     );
   }
 
   static final GlobalKey<NavigatorState> $parentNavigatorKey = rootNavigatorKey;
   static const String $restorationScopeId = 'mainRouteRestorationScopeId';
-}
-
-final class ScaffoldWithNaviBar extends StatelessWidget {
-  const ScaffoldWithNaviBar({
-    required this.navigationShell,
-    super.key,
-  });
-
-  final StatefulNavigationShell navigationShell;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: navigationShell,
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'ホーム'),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: '探す'),
-          BottomNavigationBarItem(icon: Icon(Icons.co2), label: 'コミュニティ'),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_balance),
-            label: 'マイページ',
-          ),
-        ],
-        type: BottomNavigationBarType.fixed,
-        currentIndex: navigationShell.currentIndex,
-        onTap: (index) {
-          navigationShell.goBranch(
-            index,
-            initialLocation: index == navigationShell.currentIndex,
-          );
-        },
-      ),
-    );
-  }
 }

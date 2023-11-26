@@ -37,6 +37,7 @@ Future<void> main() async {
 
   runApp(
     DevicePreview(
+      enabled: false,
       builder: (context) => TranslationProvider(
         child: ProviderScope(
           overrides: [

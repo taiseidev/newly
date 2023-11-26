@@ -8,6 +8,7 @@ part of 'main_route.dart';
 
 List<RouteBase> get $appRoutes => [
       $policyRoute,
+      $calendarRoute,
       $contactRoute,
       $startRoute,
       $mainRoute,
@@ -24,6 +25,29 @@ extension $PolicyRouteExtension on PolicyRoute {
 
   String get location => GoRouteData.$location(
         '/policy',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $calendarRoute => GoRouteData.$route(
+      path: '/calendar',
+      parentNavigatorKey: CalendarRoute.$parentNavigatorKey,
+      factory: $CalendarRouteExtension._fromState,
+    );
+
+extension $CalendarRouteExtension on CalendarRoute {
+  static CalendarRoute _fromState(GoRouterState state) => const CalendarRoute();
+
+  String get location => GoRouteData.$location(
+        '/calendar',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -117,16 +141,6 @@ RouteBase get $mainRoute => StatefulShellRouteData.$route(
             ),
           ],
         ),
-        StatefulShellBranchData.$branch(
-          navigatorKey: MyPageBranch.$navigatorKey,
-          restorationScopeId: MyPageBranch.$restorationScopeId,
-          routes: [
-            GoRouteData.$route(
-              path: '/my_page',
-              factory: $MyPageRouteExtension._fromState,
-            ),
-          ],
-        ),
       ],
     );
 
@@ -174,23 +188,6 @@ extension $CommunityRouteExtension on CommunityRoute {
 
   String get location => GoRouteData.$location(
         '/community',
-      );
-
-  void go(BuildContext context) => context.go(location);
-
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  void replace(BuildContext context) => context.replace(location);
-}
-
-extension $MyPageRouteExtension on MyPageRoute {
-  static MyPageRoute _fromState(GoRouterState state) => const MyPageRoute();
-
-  String get location => GoRouteData.$location(
-        '/my_page',
       );
 
   void go(BuildContext context) => context.go(location);

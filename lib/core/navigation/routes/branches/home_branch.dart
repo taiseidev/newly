@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nost/core/const/navigation.dart';
-import 'package:nost/core/ui/pages/home/home_page.dart';
+import 'package:nost/ui/home/home_page.dart';
 
 /// NavigatorKey
 final homeNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'home');
@@ -25,5 +25,5 @@ final class HomeRoute extends GoRouteData {
   const HomeRoute();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) => const HomePage();
+  Widget build(BuildContext context, GoRouterState state) => HomePage();
 }

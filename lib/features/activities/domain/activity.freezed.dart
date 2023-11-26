@@ -22,6 +22,7 @@ Activity _$ActivityFromJson(Map<String, dynamic> json) {
 mixin _$Activity {
   String? get activityId => throw _privateConstructorUsedError;
   String? get userId => throw _privateConstructorUsedError;
+  String? get icon => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
@@ -41,6 +42,7 @@ abstract class $ActivityCopyWith<$Res> {
   $Res call(
       {String? activityId,
       String? userId,
+      String? icon,
       String? title,
       String? description,
       String? imageUrl,
@@ -62,6 +64,7 @@ class _$ActivityCopyWithImpl<$Res, $Val extends Activity>
   $Res call({
     Object? activityId = freezed,
     Object? userId = freezed,
+    Object? icon = freezed,
     Object? title = freezed,
     Object? description = freezed,
     Object? imageUrl = freezed,
@@ -75,6 +78,10 @@ class _$ActivityCopyWithImpl<$Res, $Val extends Activity>
       userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      icon: freezed == icon
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
               as String?,
       title: freezed == title
           ? _value.title
@@ -107,6 +114,7 @@ abstract class _$$ActivityImplCopyWith<$Res>
   $Res call(
       {String? activityId,
       String? userId,
+      String? icon,
       String? title,
       String? description,
       String? imageUrl,
@@ -126,6 +134,7 @@ class __$$ActivityImplCopyWithImpl<$Res>
   $Res call({
     Object? activityId = freezed,
     Object? userId = freezed,
+    Object? icon = freezed,
     Object? title = freezed,
     Object? description = freezed,
     Object? imageUrl = freezed,
@@ -139,6 +148,10 @@ class __$$ActivityImplCopyWithImpl<$Res>
       userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      icon: freezed == icon
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
               as String?,
       title: freezed == title
           ? _value.title
@@ -166,6 +179,7 @@ class _$ActivityImpl implements _Activity {
   _$ActivityImpl(
       {this.activityId,
       this.userId,
+      this.icon,
       this.title,
       this.description,
       this.imageUrl,
@@ -179,6 +193,8 @@ class _$ActivityImpl implements _Activity {
   @override
   final String? userId;
   @override
+  final String? icon;
+  @override
   final String? title;
   @override
   final String? description;
@@ -189,7 +205,7 @@ class _$ActivityImpl implements _Activity {
 
   @override
   String toString() {
-    return 'Activity(activityId: $activityId, userId: $userId, title: $title, description: $description, imageUrl: $imageUrl, date: $date)';
+    return 'Activity(activityId: $activityId, userId: $userId, icon: $icon, title: $title, description: $description, imageUrl: $imageUrl, date: $date)';
   }
 
   @override
@@ -200,6 +216,7 @@ class _$ActivityImpl implements _Activity {
             (identical(other.activityId, activityId) ||
                 other.activityId == activityId) &&
             (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.icon, icon) || other.icon == icon) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -210,8 +227,8 @@ class _$ActivityImpl implements _Activity {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, activityId, userId, title, description, imageUrl, date);
+  int get hashCode => Object.hash(runtimeType, activityId, userId, icon, title,
+      description, imageUrl, date);
 
   @JsonKey(ignore: true)
   @override
@@ -231,6 +248,7 @@ abstract class _Activity implements Activity {
   factory _Activity(
       {final String? activityId,
       final String? userId,
+      final String? icon,
       final String? title,
       final String? description,
       final String? imageUrl,
@@ -243,6 +261,8 @@ abstract class _Activity implements Activity {
   String? get activityId;
   @override
   String? get userId;
+  @override
+  String? get icon;
   @override
   String? get title;
   @override
