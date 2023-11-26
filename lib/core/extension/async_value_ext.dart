@@ -42,7 +42,9 @@ extension WidgetRefEx on WidgetRef {
               // エラーが発生したらエラーダイアログを表示する
               await showDialog<void>(
                 context: rootNavigatorKey.currentContext!,
-                builder: (context) => const Text('エラーが発生しました。'),
+                builder: (context) => const AlertDialog(
+                  title: Text('エラーが発生しました。'),
+                ),
               );
             },
             loading: loadingNotifier.show,

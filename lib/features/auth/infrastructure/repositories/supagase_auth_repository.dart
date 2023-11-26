@@ -1,12 +1,9 @@
 import 'package:nost/features/auth/domain/repositories/auth_repository.dart';
+import 'package:nost/main.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SupabaseAuthRepository extends AuthRepository {
-  SupabaseAuthRepository({
-    required this.supabase,
-  });
-
-  final SupabaseClient supabase;
+  SupabaseAuthRepository();
 
   @override
   Future<void> signInWithEmail({
@@ -16,7 +13,7 @@ class SupabaseAuthRepository extends AuthRepository {
     await supabase.auth.signUp(
       email: email,
       password: password,
-      // data: {'user_name': userName}, // メタデータを登録する場合、dataフィールドに渡す
+      data: {'user_name': 'テストさん'}, // メタデータを登録する場合、dataフィールドに渡す
     );
   }
 
@@ -72,5 +69,10 @@ class SupabaseAuthRepository extends AuthRepository {
   @override
   Future<void> signInWithApple() async {
     await supabase.auth.signInWithApple();
+  }
+
+  @override
+  Future<void> signOut() async {
+    await supabase.auth.signOut();
   }
 }

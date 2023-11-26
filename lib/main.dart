@@ -17,6 +17,8 @@ part 'main.g.dart';
 @riverpod
 User? user(UserRef ref) => throw UnimplementedError();
 
+final supabase = Supabase.instance.client;
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -33,18 +35,16 @@ Future<void> main() async {
     anonKey: Flavor.apiKey,
   );
 
-  final supabase = Supabase.instance.client;
-
   runApp(
     DevicePreview(
       builder: (context) => TranslationProvider(
         child: ProviderScope(
           overrides: [
             authRepositoryProvider.overrideWith(
-              (_) => SupabaseAuthRepository(supabase: supabase),
+              (_) => SupabaseAuthRepository(),
             ),
             activityRepositoryProvider.overrideWith(
-              (_) => SupabaseActivityRepository(supabase: supabase),
+              (_) => SupabaseActivityRepository(),
             ),
             userProvider.overrideWith((ref) => supabase.auth.currentUser),
           ],

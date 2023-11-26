@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nost/core/i18n/strings.g.dart';
 import 'package:nost/core/navigation/router/router.dart';
 import 'package:nost/core/res/theme.dart';
@@ -10,7 +10,7 @@ final scaffoldMessengerKeyProvider = Provider(
   (_) => GlobalKey<ScaffoldMessengerState>(),
 );
 
-final class App extends ConsumerWidget {
+final class App extends HookConsumerWidget {
   const App({super.key});
 
   static const appName = 'Newly';
@@ -26,8 +26,6 @@ final class App extends ConsumerWidget {
       routerConfig: router,
       scaffoldMessengerKey: ref.watch(scaffoldMessengerKeyProvider),
       locale: TranslationProvider.of(context).flutterLocale,
-      // builder: DevicePreview.appBuilder,
-      
       supportedLocales: AppLocaleUtils.supportedLocales,
       localizationsDelegates: GlobalMaterialLocalizations.delegates,
       theme: getLightTheme(),

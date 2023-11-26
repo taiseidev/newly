@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nost/core/extension/async_value_ext.dart';
+import 'package:nost/core/ui/home/home_notifier.dart';
 import 'package:nost/features/activities/domain/activity.dart';
 import 'package:nost/features/activities/domain/repositories/activity_repository.dart';
 import 'package:nost/main.dart';
@@ -21,16 +22,14 @@ final class HomePage extends HookConsumerWidget {
     final user = ref.watch(userProvider);
 
     ref.handleAsyncValue<void>(
-      testProvider,
+      homeNotifierProvider,
       complete: (context, _) async {},
       completeMessage: '完了しました！',
     );
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          // ref.invalidate(testProvider);
-        },
+        onPressed: () async {},
       ),
       body: SafeArea(
         child: Column(
@@ -56,6 +55,11 @@ final class HomePage extends HookConsumerWidget {
                     );
               },
               child: const Text('投稿'),
+            ),
+            ElevatedButton(
+              onPressed: () =>
+                  ref.read(homeNotifierProvider.notifier).signOut(),
+              child: const Text('ログアウト'),
             ),
             Text(user?.id ?? 'テスト'),
           ],
