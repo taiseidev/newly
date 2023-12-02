@@ -2,14 +2,15 @@ import 'package:nost/features/activities/domain/activity.dart';
 import 'package:nost/features/activities/domain/repositories/activity_repository.dart';
 import 'package:nost/main.dart';
 
-class SupabaseActivityRepository extends ActivityRepository {
+final class SupabaseActivityRepository extends ActivityRepository {
   SupabaseActivityRepository();
 
   static const _tableName = 'activities';
 
   @override
   Future<void> insert(Activity activity) async {
-    await supabase.from(_tableName).insert(activity);
+    final userId = supabase.auth.currentUser?.id;
+    await supabase.from(_tableName).insert(activity.copyWith(userId: userId));
   }
 
   @override

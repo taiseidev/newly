@@ -45,7 +45,7 @@ extension WidgetRefEx on WidgetRef {
                 context: rootNavigatorKey.currentContext!,
                 builder: (context) => AlertDialog(
                   title: Text((e as AppException).title!),
-                  content: Text(e.detail!),
+                  content: Text(e.detail ?? 'なんらかの不具合が発生しました。'),
                 ),
               );
             },

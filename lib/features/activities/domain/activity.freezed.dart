@@ -20,13 +20,12 @@ Activity _$ActivityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Activity {
-  String? get activityId => throw _privateConstructorUsedError;
-  String? get userId => throw _privateConstructorUsedError;
-  String? get icon => throw _privateConstructorUsedError;
-  String? get title => throw _privateConstructorUsedError;
+  String get activityId => throw _privateConstructorUsedError;
+  String? get userId => throw _privateConstructorUsedError; // String? icon,
+  String? get title => throw _privateConstructorUsedError; // Tag? tag,
   String? get description => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
-  DateTime? get date => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,13 +39,12 @@ abstract class $ActivityCopyWith<$Res> {
       _$ActivityCopyWithImpl<$Res, Activity>;
   @useResult
   $Res call(
-      {String? activityId,
+      {String activityId,
       String? userId,
-      String? icon,
       String? title,
       String? description,
       String? imageUrl,
-      DateTime? date});
+      String? createdAt});
 }
 
 /// @nodoc
@@ -62,26 +60,21 @@ class _$ActivityCopyWithImpl<$Res, $Val extends Activity>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? activityId = freezed,
+    Object? activityId = null,
     Object? userId = freezed,
-    Object? icon = freezed,
     Object? title = freezed,
     Object? description = freezed,
     Object? imageUrl = freezed,
-    Object? date = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
-      activityId: freezed == activityId
+      activityId: null == activityId
           ? _value.activityId
           : activityId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      icon: freezed == icon
-          ? _value.icon
-          : icon // ignore: cast_nullable_to_non_nullable
               as String?,
       title: freezed == title
           ? _value.title
@@ -95,10 +88,10 @@ class _$ActivityCopyWithImpl<$Res, $Val extends Activity>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      date: freezed == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -112,13 +105,12 @@ abstract class _$$ActivityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? activityId,
+      {String activityId,
       String? userId,
-      String? icon,
       String? title,
       String? description,
       String? imageUrl,
-      DateTime? date});
+      String? createdAt});
 }
 
 /// @nodoc
@@ -132,26 +124,21 @@ class __$$ActivityImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? activityId = freezed,
+    Object? activityId = null,
     Object? userId = freezed,
-    Object? icon = freezed,
     Object? title = freezed,
     Object? description = freezed,
     Object? imageUrl = freezed,
-    Object? date = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_$ActivityImpl(
-      activityId: freezed == activityId
+      activityId: null == activityId
           ? _value.activityId
           : activityId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      icon: freezed == icon
-          ? _value.icon
-          : icon // ignore: cast_nullable_to_non_nullable
               as String?,
       title: freezed == title
           ? _value.title
@@ -165,10 +152,10 @@ class __$$ActivityImplCopyWithImpl<$Res>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      date: freezed == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -177,35 +164,34 @@ class __$$ActivityImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ActivityImpl implements _Activity {
   _$ActivityImpl(
-      {this.activityId,
+      {required this.activityId,
       this.userId,
-      this.icon,
       this.title,
       this.description,
       this.imageUrl,
-      this.date});
+      this.createdAt});
 
   factory _$ActivityImpl.fromJson(Map<String, dynamic> json) =>
       _$$ActivityImplFromJson(json);
 
   @override
-  final String? activityId;
+  final String activityId;
   @override
   final String? userId;
-  @override
-  final String? icon;
+// String? icon,
   @override
   final String? title;
+// Tag? tag,
   @override
   final String? description;
   @override
   final String? imageUrl;
   @override
-  final DateTime? date;
+  final String? createdAt;
 
   @override
   String toString() {
-    return 'Activity(activityId: $activityId, userId: $userId, icon: $icon, title: $title, description: $description, imageUrl: $imageUrl, date: $date)';
+    return 'Activity(activityId: $activityId, userId: $userId, title: $title, description: $description, imageUrl: $imageUrl, createdAt: $createdAt)';
   }
 
   @override
@@ -216,19 +202,19 @@ class _$ActivityImpl implements _Activity {
             (identical(other.activityId, activityId) ||
                 other.activityId == activityId) &&
             (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.icon, icon) || other.icon == icon) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
-            (identical(other.date, date) || other.date == date));
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, activityId, userId, icon, title,
-      description, imageUrl, date);
+  int get hashCode => Object.hash(
+      runtimeType, activityId, userId, title, description, imageUrl, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -246,31 +232,28 @@ class _$ActivityImpl implements _Activity {
 
 abstract class _Activity implements Activity {
   factory _Activity(
-      {final String? activityId,
+      {required final String activityId,
       final String? userId,
-      final String? icon,
       final String? title,
       final String? description,
       final String? imageUrl,
-      final DateTime? date}) = _$ActivityImpl;
+      final String? createdAt}) = _$ActivityImpl;
 
   factory _Activity.fromJson(Map<String, dynamic> json) =
       _$ActivityImpl.fromJson;
 
   @override
-  String? get activityId;
+  String get activityId;
   @override
   String? get userId;
-  @override
-  String? get icon;
-  @override
+  @override // String? icon,
   String? get title;
-  @override
+  @override // Tag? tag,
   String? get description;
   @override
   String? get imageUrl;
   @override
-  DateTime? get date;
+  String? get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$ActivityImplCopyWith<_$ActivityImpl> get copyWith =>

@@ -21,4 +21,13 @@ class MockAuthRepository extends AuthRepository {
     // 不正なクエリを実行
     await supabase.from('non_existing_table').select();
   }
+
+  @override
+  Future<void> signUpWithEmail({
+    required String email,
+    required String password,
+  }) {
+    // TODO: implement signUpWithEmail
+    throw UnimplementedError();
+  }
 }

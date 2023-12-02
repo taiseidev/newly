@@ -6,15 +6,30 @@ part 'activity.g.dart';
 @freezed
 class Activity with _$Activity {
   factory Activity({
-    String? activityId,
+    required String activityId,
     String? userId,
-    String? icon,
+    // String? icon,
     String? title,
+    // Tag? tag,
     String? description,
     String? imageUrl,
-    DateTime? date,
+    String? createdAt,
   }) = _Activity;
 
   factory Activity.fromJson(Map<String, dynamic> json) =>
       _$ActivityFromJson(json);
 }
+
+// class TagConverter implements JsonConverter<Tag, String> {
+//   const TagConverter();
+
+//   @override
+//   Tag fromJson(String json) {
+//     return Tag(tagId: , name: );
+//   }
+
+//   @override
+//   String toJson(DateTime dateTime) {
+//     return dateTime.toLocal().toString();
+//   }
+// }

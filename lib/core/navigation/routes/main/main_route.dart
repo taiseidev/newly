@@ -7,6 +7,7 @@ import 'package:nost/core/navigation/routes/branches/home_branch.dart';
 import 'package:nost/core/navigation/routes/branches/search_branch.dart';
 import 'package:nost/ui/bottom_navigation/scaffold_with_nav_bar.dart';
 import 'package:nost/ui/calendar/calendar_page.dart';
+import 'package:nost/ui/home/home_page.dart';
 import 'package:nost/ui/start/start_page.dart';
 
 part 'main_route.g.dart';
@@ -20,6 +21,19 @@ class PolicyRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const SizedBox.shrink();
+
+  static final GlobalKey<NavigatorState> $parentNavigatorKey = rootNavigatorKey;
+}
+
+@TypedGoRoute<ActivityDetailRoute>(
+  path: '/activity_detail',
+)
+class ActivityDetailRoute extends GoRouteData {
+  const ActivityDetailRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const ActivityDetailPage();
 
   static final GlobalKey<NavigatorState> $parentNavigatorKey = rootNavigatorKey;
 }

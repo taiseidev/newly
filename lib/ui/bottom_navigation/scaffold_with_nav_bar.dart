@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nost/core/navigation/routes/main/main_route.dart';
+import 'package:nost/ui/bottom_navigation/scaffold_with_nav_bar_notifier.dart';
 
-final class ScaffoldWithNavBar extends StatelessWidget {
+final class ScaffoldWithNavBar extends ConsumerWidget {
   ScaffoldWithNavBar({
     required this.navigationShell,
     super.key,
@@ -15,7 +17,7 @@ final class ScaffoldWithNavBar extends StatelessWidget {
   final _advancedDrawerController = AdvancedDrawerController();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return AdvancedDrawer(
       backdrop: Container(
         width: double.infinity,
@@ -108,6 +110,17 @@ final class ScaffoldWithNavBar extends StatelessWidget {
           ],
         ),
         body: navigationShell,
+        floatingActionButton: FloatingActionButton(
+          // Activityを作成
+          onPressed: () async {
+            await ref
+                .read(scaffoldWithNavBarNotifierProvider.notifier)
+                .createActivity(
+                  title: '一人映画',
+                  description: '今日は一人で映画を見にいく',
+                );
+          },
+        ),
         bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: const Color(0xffee8c00),
           selectedLabelStyle: const TextStyle(

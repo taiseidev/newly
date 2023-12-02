@@ -7,6 +7,10 @@ AuthRepository authRepository(AuthRepositoryRef ref) =>
     throw UnimplementedError();
 
 abstract class AuthRepository {
+  Future<void> signUpWithEmail({
+    required String email,
+    required String password,
+  });
   Future<void> signInWithEmail({
     required String email,
     required String password,

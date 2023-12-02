@@ -8,6 +8,7 @@ part of 'main_route.dart';
 
 List<RouteBase> get $appRoutes => [
       $policyRoute,
+      $activityDetailRoute,
       $calendarRoute,
       $contactRoute,
       $startRoute,
@@ -25,6 +26,30 @@ extension $PolicyRouteExtension on PolicyRoute {
 
   String get location => GoRouteData.$location(
         '/policy',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $activityDetailRoute => GoRouteData.$route(
+      path: '/activity_detail',
+      parentNavigatorKey: ActivityDetailRoute.$parentNavigatorKey,
+      factory: $ActivityDetailRouteExtension._fromState,
+    );
+
+extension $ActivityDetailRouteExtension on ActivityDetailRoute {
+  static ActivityDetailRoute _fromState(GoRouterState state) =>
+      const ActivityDetailRoute();
+
+  String get location => GoRouteData.$location(
+        '/activity_detail',
       );
 
   void go(BuildContext context) => context.go(location);

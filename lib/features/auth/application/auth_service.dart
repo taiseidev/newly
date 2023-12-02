@@ -26,6 +26,27 @@ class AuthService {
     }
   }
 
+  Future<void> signUpWithEmail({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      await repository.signUpWithEmail(email: email, password: password);
+    } on Exception catch (e) {
+      logger.e(e);
+      throw AppException.general(e);
+    }
+  }
+
+  Future<void> signInWithGoogle() async {
+    try {
+      await repository.signInWithGoogle();
+    } on Exception catch (e) {
+      logger.e(e);
+      throw AppException.general(e);
+    }
+  }
+
   Future<void> signOut() async {
     try {
       await repository.signOut();

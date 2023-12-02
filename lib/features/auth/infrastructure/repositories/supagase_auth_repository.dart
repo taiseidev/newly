@@ -1,3 +1,4 @@
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:nost/features/auth/domain/repositories/auth_repository.dart';
 import 'package:nost/main.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -10,6 +11,17 @@ class SupabaseAuthRepository extends AuthRepository {
     required String email,
     required String password,
   }) async {
+    await supabase.auth.signInWithPassword(
+      email: email,
+      password: password,
+    );
+  }
+
+  @override
+  Future<void> signUpWithEmail({
+    required String email,
+    required String password,
+  }) async {
     await supabase.auth.signUp(
       email: email,
       password: password,
@@ -19,51 +31,37 @@ class SupabaseAuthRepository extends AuthRepository {
 
   @override
   Future<void> signInWithGoogle() async {
-    await supabase.auth.signInWithOAuth(
-      Provider.google,
-      redirectTo: 'https://yvvozlgluavcsjzptfop.supabase.co/auth/v1/callback',
+    const webClientId =
+        '685439481632-l6shkkhellg5pt588ij8slp2qf3c9g07.apps.googleusercontent.com';
+
+    const iosClientId =
+        '685439481632-g6g21klnah879srvftca7hs2npn50tev.apps.googleusercontent.com';
+
+    final googleSignIn = GoogleSignIn(
+      clientId: iosClientId,
+      serverClientId: webClientId,
+      scopes: [
+        'email',
+        'https://www.googleapis.com/auth/contacts.readonly',
+      ],
     );
+    final googleUser = await googleSignIn.signIn();
+    final googleAuth = await googleUser!.authentication;
+    final accessToken = googleAuth.accessToken;
+    final idToken = googleAuth.idToken;
 
-    // /// TODO: update the Web client ID with your own.
-    // ///
-    // /// Web Client ID that you registered with Google Cloud.
-    // // const webClientId =
-    // //     '685439481632-l6shkkhellg5pt588ij8slp2qf3c9g07.apps.googleusercontent.com';
+    if (accessToken == null) {
+      throw 'No Access Token found.';
+    }
+    if (idToken == null) {
+      throw 'No ID Token found.';
+    }
 
-    // /// TODO: update the iOS client ID with your own.
-    // ///
-    // /// iOS Client ID that you registered with Google Cloud.
-    // const iosClientId =
-    //     '685439481632-g6g21klnah879srvftca7hs2npn50tev.apps.googleusercontent.com';
-
-    // // Google sign in on Android will work without providing the Android
-    // // Client ID registered on Google Cloud.
-
-    // final googleSignIn = GoogleSignIn(
-    //   clientId: iosClientId,
-    //   // serverClientId: webClientId,
-    //   scopes: [
-    //     'email',
-    //     'https://www.googleapis.com/auth/contacts.readonly',
-    //   ],
-    // );
-    // final googleUser = await googleSignIn.signIn();
-    // final googleAuth = await googleUser!.authentication;
-    // final accessToken = googleAuth.accessToken;
-    // final idToken = googleAuth.idToken;
-
-    // if (accessToken == null) {
-    //   throw 'No Access Token found.';
-    // }
-    // if (idToken == null) {
-    //   throw 'No ID Token found.';
-    // }
-
-    // await supabase.auth.signInWithIdToken(
-    //   provider: Provider.google,
-    //   idToken: idToken,
-    //   accessToken: accessToken,
-    // );
+    await supabase.auth.signInWithIdToken(
+      provider: Provider.google,
+      idToken: idToken,
+      accessToken: accessToken,
+    );
   }
 
   @override

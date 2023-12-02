@@ -51,6 +51,16 @@ class AppException implements Exception {
         title: 'ネットワークエラー',
         detail: 'サーバーとの通信に失敗しました。デバイスのネットワーク設定と環境を確認して再度お試してください。',
       );
+    } else if (exception is AuthException) {
+      switch (exception.statusCode) {
+        case '400':
+          return AppException(
+            title: 'メール認証が完了していません',
+            detail: exception.message,
+          );
+        default:
+          return AppException.unknown();
+      }
     }
     return AppException();
   }
