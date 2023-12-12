@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 ThemeData getLightTheme() {
   final base = ThemeData(
-    useMaterial3: true,
-    primaryColor: Colors.blue,
+    useMaterial3: false,
   );
   return base.copyWith(
     appBarTheme: const AppBarTheme(

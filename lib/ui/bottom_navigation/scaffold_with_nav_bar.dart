@@ -1,3 +1,4 @@
+import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
@@ -5,7 +6,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nost/core/navigation/routes/main/main_route.dart';
-import 'package:nost/ui/bottom_navigation/scaffold_with_nav_bar_notifier.dart';
 
 final class ScaffoldWithNavBar extends ConsumerWidget {
   ScaffoldWithNavBar({
@@ -72,7 +72,10 @@ final class ScaffoldWithNavBar extends ConsumerWidget {
         ),
       ),
       child: Scaffold(
+        extendBody: true,
+        backgroundColor: const Color(0xffefeef4),
         appBar: AppBar(
+          elevation: 0,
           centerTitle: true,
           leading: Padding(
             padding: const EdgeInsets.only(left: 24),
@@ -110,55 +113,31 @@ final class ScaffoldWithNavBar extends ConsumerWidget {
           ],
         ),
         body: navigationShell,
-        floatingActionButton: FloatingActionButton(
-          // Activityを作成
-          onPressed: () async {
-            await ref
-                .read(scaffoldWithNavBarNotifierProvider.notifier)
-                .createActivity(
-                  title: '一人映画',
-                  description: '今日は一人で映画を見にいく',
-                );
-          },
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: const Color(0xffee8c00),
-          selectedLabelStyle: const TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-          unselectedLabelStyle: const TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-          items: const [
-            BottomNavigationBarItem(
-              icon: FaIcon(
-                FontAwesomeIcons.house,
-                size: 20,
-              ),
-              label: 'ホーム',
-            ),
-            BottomNavigationBarItem(
-              icon: FaIcon(
-                FontAwesomeIcons.magnifyingGlass,
-                size: 20,
-              ),
-              label: '探す',
-            ),
-            BottomNavigationBarItem(
-              icon: FaIcon(
-                FontAwesomeIcons.timeline,
-                size: 20,
-              ),
-              label: 'タイムライン',
-            ),
-          ],
+        bottomNavigationBar: DotNavigationBar(
+          backgroundColor: const Color(0xff2D2A4D),
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.white.withOpacity(0.6),
           currentIndex: navigationShell.currentIndex,
+          curve: Curves.fastEaseInToSlowEaseOut,
+          enablePaddingAnimation: false,
           onTap: (index) {
             navigationShell.goBranch(
               index,
               initialLocation: index == navigationShell.currentIndex,
             );
           },
+          dotIndicatorColor: Colors.white,
+          items: [
+            DotNavigationBarItem(
+              icon: const Icon(Icons.home),
+            ),
+            DotNavigationBarItem(
+              icon: const Icon(Icons.favorite_border),
+            ),
+            DotNavigationBarItem(
+              icon: const Icon(Icons.search),
+            ),
+          ],
         ),
       ),
     );
