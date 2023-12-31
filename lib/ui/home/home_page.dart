@@ -18,17 +18,28 @@ class HomePage extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(
+        Padding(
+          padding: const EdgeInsets.symmetric(
             vertical: 8,
             horizontal: 24,
           ),
-          child: Text(
-            '今日の新しい事',
-            style: TextStyle(
-              fontSize: 24,
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
+          child: ShaderMask(
+            shaderCallback: (bounds) => const LinearGradient(
+              colors: [
+                Color.fromARGB(255, 29, 97, 137),
+                Color(0xff11b4e0),
+                Color(0xff2fe7d8),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ).createShader(bounds),
+            child: const Text(
+              '今日の新しいこと',
+              style: TextStyle(
+                // The color must be set to white for this to work
+                color: Colors.white,
+                fontSize: 24,
+              ),
             ),
           ),
         ),
@@ -47,17 +58,28 @@ class HomePage extends ConsumerWidget {
             child: const _ActivityItem(),
           ),
         ),
-        const Padding(
-          padding: EdgeInsets.symmetric(
+        Padding(
+          padding: const EdgeInsets.symmetric(
             vertical: 8,
             horizontal: 24,
           ),
-          child: Text(
-            '履歴一覧',
-            style: TextStyle(
-              fontSize: 24,
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
+          child: ShaderMask(
+            shaderCallback: (bounds) => const LinearGradient(
+              colors: [
+                Color.fromARGB(255, 68, 135, 174),
+                Color.fromARGB(255, 65, 195, 231),
+                Color.fromARGB(255, 145, 254, 245),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ).createShader(bounds),
+            child: const Text(
+              '履歴一覧',
+              style: TextStyle(
+                fontSize: 24,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),

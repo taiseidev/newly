@@ -106,39 +106,50 @@ final class ScaffoldWithNavBar extends ConsumerWidget {
           ],
         ),
         body: navigationShell,
-        bottomNavigationBar: DotNavigationBar(
-          backgroundColor: const Color(0xff0d3153),
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black26,
-              offset: Offset(10, 10),
-              blurRadius: 10,
-              spreadRadius: 1,
-            ),
-          ],
-          selectedItemColor: Colors.white,
-          unselectedItemColor: Colors.white.withOpacity(0.6),
-          currentIndex: navigationShell.currentIndex,
-          curve: Curves.fastEaseInToSlowEaseOut,
-          enablePaddingAnimation: false,
-          onTap: (index) {
-            navigationShell.goBranch(
-              index,
-              initialLocation: index == navigationShell.currentIndex,
-            );
-          },
-          dotIndicatorColor: Colors.white,
-          items: [
-            DotNavigationBarItem(
-              icon: const Icon(Icons.home),
-            ),
-            DotNavigationBarItem(
-              icon: const Icon(Icons.favorite_border),
-            ),
-            DotNavigationBarItem(
-              icon: const Icon(Icons.search),
-            ),
-          ],
+        bottomNavigationBar: ShaderMask(
+          shaderCallback: (bounds) => const LinearGradient(
+            colors: [
+              Color.fromARGB(255, 68, 135, 174),
+              Color.fromARGB(255, 65, 195, 231),
+              Color.fromARGB(255, 145, 254, 245),
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ).createShader(bounds),
+          child: DotNavigationBar(
+            backgroundColor: const Color(0xff0d3153),
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.black26,
+                offset: Offset(10, 10),
+                blurRadius: 10,
+                spreadRadius: 1,
+              ),
+            ],
+            selectedItemColor: Colors.white,
+            unselectedItemColor: Colors.white.withOpacity(0.6),
+            currentIndex: navigationShell.currentIndex,
+            curve: Curves.fastEaseInToSlowEaseOut,
+            enablePaddingAnimation: false,
+            onTap: (index) {
+              navigationShell.goBranch(
+                index,
+                initialLocation: index == navigationShell.currentIndex,
+              );
+            },
+            dotIndicatorColor: Colors.white,
+            items: [
+              DotNavigationBarItem(
+                icon: const Icon(Icons.home),
+              ),
+              DotNavigationBarItem(
+                icon: const Icon(Icons.favorite_border),
+              ),
+              DotNavigationBarItem(
+                icon: const Icon(Icons.search),
+              ),
+            ],
+          ),
         ),
       ),
     );
