@@ -27,7 +27,7 @@ class HomePage extends ConsumerWidget {
             '今日の新しい事',
             style: TextStyle(
               fontSize: 24,
-              color: Color(0xffee8c00),
+              color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -56,13 +56,14 @@ class HomePage extends ConsumerWidget {
             '履歴一覧',
             style: TextStyle(
               fontSize: 24,
-              color: Color(0xffee8c00),
+              color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
           ),
         ),
         switch (activities) {
-          AsyncData(:final value) => Expanded(
+          AsyncData(:final value) => SizedBox(
+              height: 300,
               child: StackedListView(
                 padding: const EdgeInsets.only(
                   left: 24,
@@ -70,7 +71,7 @@ class HomePage extends ConsumerWidget {
                   top: 8,
                 ),
                 itemCount: value.length,
-                itemExtent: 200,
+                itemExtent: 150,
                 heightFactor: 0.8,
                 onRemove: (index, direction) {},
                 beforeRemove: (index, direction) async {
@@ -149,12 +150,12 @@ class _ActivityItem extends ConsumerWidget {
                   child: const Text('🚀'),
                 ),
                 const SizedBox(width: 16),
-                const Text(
+                Text(
                   '料理',
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: Colors.grey,
+                    color: const Color(0xff10425f).withOpacity(0.6),
                   ),
                 ),
                 const Spacer(),
@@ -185,18 +186,21 @@ class _ActivityItem extends ConsumerWidget {
                       activity.title!,
                       style: const TextStyle(
                         fontSize: 16,
-                        color: Color(0xffee8c00),
+                        color: Color(0xff10425f),
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ],
                 ),
                 const SizedBox(height: 8),
-                Text(
-                  activity.description!,
-                  style: const TextStyle(
+                const Text(
+                  'テストテストテストテストテストテストテストテストテストテストテストテストテストテスト',
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
+                    color: Color(0xff10425f),
                   ),
                 ),
               ],
@@ -226,3 +230,6 @@ class ActivityDetailPage extends StatelessWidget {
     );
   }
 }
+
+// Color(0xff08163b)
+// 上記はアクティブなカラーに使用する

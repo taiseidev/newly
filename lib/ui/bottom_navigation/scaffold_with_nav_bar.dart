@@ -1,3 +1,4 @@
+// ignore: depend_on_referenced_packages
 import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -5,7 +6,6 @@ import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:nost/core/navigation/routes/main/main_route.dart';
 
 final class ScaffoldWithNavBar extends ConsumerWidget {
   ScaffoldWithNavBar({
@@ -22,7 +22,7 @@ final class ScaffoldWithNavBar extends ConsumerWidget {
       backdrop: Container(
         width: double.infinity,
         height: double.infinity,
-        color: Colors.grey,
+        color: const Color(0xff10425f).withOpacity(0.9),
       ),
       controller: _advancedDrawerController,
       animationCurve: Curves.ease,
@@ -73,7 +73,7 @@ final class ScaffoldWithNavBar extends ConsumerWidget {
       ),
       child: Scaffold(
         extendBody: true,
-        backgroundColor: const Color(0xffefeef4),
+        backgroundColor: const Color(0xff10425f),
         appBar: AppBar(
           elevation: 0,
           centerTitle: true,
@@ -93,15 +93,8 @@ final class ScaffoldWithNavBar extends ConsumerWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          actions: [
-            IconButton(
-              onPressed: () {
-                HapticFeedback.heavyImpact();
-                const CalendarRoute().push<void>(context);
-              },
-              icon: const FaIcon(FontAwesomeIcons.calendar),
-            ),
-            const Padding(
+          actions: const [
+            Padding(
               padding: EdgeInsets.only(right: 24),
               child: IconButton(
                 onPressed: HapticFeedback.heavyImpact,
@@ -114,7 +107,7 @@ final class ScaffoldWithNavBar extends ConsumerWidget {
         ),
         body: navigationShell,
         bottomNavigationBar: DotNavigationBar(
-          backgroundColor: const Color(0xff2D2A4D),
+          backgroundColor: const Color(0xff0d3153),
           selectedItemColor: Colors.white,
           unselectedItemColor: Colors.white.withOpacity(0.6),
           currentIndex: navigationShell.currentIndex,

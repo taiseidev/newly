@@ -20,3 +20,26 @@
 ## Env
 - [enved](https://pub.dev/packages/envied)
 - [【Flutter】enviedパッケージを使う際にひっかかったこと](https://zenn.dev/8rine23/scraps/f097a9505cbe7b)
+
+## Font
+- [Flutter の Text Scale Factor に対応したデザインを実装する](https://zenn.dev/10q89s/articles/flutter-text-scale-factor)
+→ 文字を囲む際は SizedBox ではなく BoxConstraints を使う
+→ ErrorViewなど埋め込み画面はSingleChildeScrollViewでスクロール可能にしておく
+
+```dart
+// v3.15以前: textScaleFactor
+MediaQuery(
+  data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+  child: child,
+),
+
+Text('テキスト', textScaleFactor: 1.0);
+
+// v3.16以降: TextScaler
+MediaQuery(
+  data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(1.0)),
+  child: child,
+),
+
+Text('テキスト', textScaler: TextScaler.linear(1.0));
+```

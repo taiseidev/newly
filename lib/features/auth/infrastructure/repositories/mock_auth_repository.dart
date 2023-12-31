@@ -19,6 +19,7 @@ class MockAuthRepository extends AuthRepository {
   @override
   Future<void> signOut() async {
     // 不正なクエリを実行
+    // ignore: inference_failure_on_function_invocation
     await supabase.from('non_existing_table').select();
   }
 
