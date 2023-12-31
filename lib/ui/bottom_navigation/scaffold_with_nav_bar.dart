@@ -108,6 +108,14 @@ final class ScaffoldWithNavBar extends ConsumerWidget {
         body: navigationShell,
         bottomNavigationBar: DotNavigationBar(
           backgroundColor: const Color(0xff0d3153),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black26,
+              offset: Offset(10, 10),
+              blurRadius: 10,
+              spreadRadius: 1,
+            ),
+          ],
           selectedItemColor: Colors.white,
           unselectedItemColor: Colors.white.withOpacity(0.6),
           currentIndex: navigationShell.currentIndex,
