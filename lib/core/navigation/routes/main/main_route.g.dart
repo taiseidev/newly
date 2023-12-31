@@ -9,7 +9,6 @@ part of 'main_route.dart';
 List<RouteBase> get $appRoutes => [
       $policyRoute,
       $activityDetailRoute,
-      $calendarRoute,
       $contactRoute,
       $startRoute,
       $mainRoute,
@@ -50,29 +49,6 @@ extension $ActivityDetailRouteExtension on ActivityDetailRoute {
 
   String get location => GoRouteData.$location(
         '/activity_detail',
-      );
-
-  void go(BuildContext context) => context.go(location);
-
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  void replace(BuildContext context) => context.replace(location);
-}
-
-RouteBase get $calendarRoute => GoRouteData.$route(
-      path: '/calendar',
-      parentNavigatorKey: CalendarRoute.$parentNavigatorKey,
-      factory: $CalendarRouteExtension._fromState,
-    );
-
-extension $CalendarRouteExtension on CalendarRoute {
-  static CalendarRoute _fromState(GoRouterState state) => const CalendarRoute();
-
-  String get location => GoRouteData.$location(
-        '/calendar',
       );
 
   void go(BuildContext context) => context.go(location);
