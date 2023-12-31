@@ -18,13 +18,9 @@ final class SupabaseActivityRepository extends ActivityRepository {
     // ここでAPIを叩く場合はcurrentUserがnullではないことは確実なので、いちいちnullチェックしないように修正する。
     final userId = supabase.auth.currentUser?.id;
 
-    print(userId);
-
     if (userId != null) {}
-    final result = await supabase
-        .from(_tableName)
-        .select<List<Map<String, dynamic>>>()
-        .eq('user_id', userId);
+    final result =
+        await supabase.from(_tableName).select().eq('user_id', userId!);
     return result.map(Activity.fromJson).toList();
   }
 }

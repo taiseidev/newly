@@ -1,7 +1,9 @@
+// ignore_for_file: lines_longer_than_80_chars
+
+import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:nost/features/auth/domain/repositories/auth_repository.dart';
 import 'package:nost/main.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SupabaseAuthRepository extends AuthRepository {
   SupabaseAuthRepository();
@@ -50,23 +52,19 @@ class SupabaseAuthRepository extends AuthRepository {
     final accessToken = googleAuth.accessToken;
     final idToken = googleAuth.idToken;
 
-    if (accessToken == null) {
-      throw 'No Access Token found.';
-    }
-    if (idToken == null) {
-      throw 'No ID Token found.';
-    }
+    debugPrint(accessToken);
+    debugPrint(idToken);
 
-    await supabase.auth.signInWithIdToken(
-      provider: Provider.google,
-      idToken: idToken,
-      accessToken: accessToken,
-    );
+    // await supabase.auth.signInWithIdToken(
+    //   provider: Provider.google,
+    //   idToken: idToken,
+    //   accessToken: accessToken,
+    // );
   }
 
   @override
   Future<void> signInWithApple() async {
-    await supabase.auth.signInWithApple();
+    // await supabase.auth.signInWithApple();
   }
 
   @override
