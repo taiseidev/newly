@@ -9,13 +9,7 @@ import 'package:nost/features/activities/domain/repositories/activity_repository
 import 'package:nost/features/activities/infrastructure/repositories/supabase_activity_repository.dart';
 import 'package:nost/features/auth/domain/repositories/auth_repository.dart';
 import 'package:nost/features/auth/infrastructure/repositories/supagase_auth_repository.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-
-part 'main.g.dart';
-
-@riverpod
-User? user(UserRef ref) => throw UnimplementedError();
 
 final supabase = Supabase.instance.client;
 
@@ -47,7 +41,7 @@ Future<void> main() async {
             activityRepositoryProvider.overrideWith(
               (_) => SupabaseActivityRepository(),
             ),
-            userProvider.overrideWith((ref) => supabase.auth.currentUser),
+            // userProvider.overrideWith((ref) => supabase.auth.currentUser),
           ],
           child: const App(),
         ),
