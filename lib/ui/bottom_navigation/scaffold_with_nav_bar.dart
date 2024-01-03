@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 import 'package:nost/core/extension/context_ext.dart';
 import 'package:nost/core/i18n/strings.g.dart';
+import 'package:nost/core/theme/theme_mode.dart';
 
 class ScaffoldWithNavBar extends StatelessWidget {
   const ScaffoldWithNavBar({
@@ -129,24 +133,51 @@ class _Drawer extends StatelessWidget {
   }
 }
 
-class _DrawerHeader extends StatelessWidget {
+class _DrawerHeader extends ConsumerWidget {
   const _DrawerHeader();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final themeMode = ref.watch(themeModeNotifierProvider);
+
     return Container(
       height: 150,
       padding: const EdgeInsets.all(16),
       alignment: Alignment.bottomLeft,
       child: Row(
         children: [
-          const Icon(Icons.account_balance),
+          const Text('ロゴを挿入'),
           const SizedBox(
             width: 24,
           ),
-          Switch.adaptive(
-            value: false,
-            onChanged: (value) {},
+          SizedBox(
+            height: 40,
+            child: LiteRollingSwitch(
+              width: 75,
+              value: themeMode == ThemeMode.light,
+              textOn: '',
+              textOff: '',
+              colorOn: context.colorScheme.tertiary,
+              colorOff: context.colorScheme.background,
+              iconOn: Icons.sunny,
+              iconOff: Icons.night_shelter,
+              onChanged: (state) {
+                HapticFeedback.heavyImpact();
+                if (state) {
+                  ref
+                      .read(themeModeNotifierProvider.notifier)
+                      .update(ThemeMode.light);
+                } else {
+                  ref
+                      .read(themeModeNotifierProvider.notifier)
+                      .update(ThemeMode.dark);
+                }
+              },
+              // 下記は必須プロパティだけど使用しない
+              onTap: () {},
+              onDoubleTap: () {},
+              onSwipe: () {},
+            ),
           ),
           const Spacer(),
           IconButton(
@@ -175,7 +206,6 @@ class _DrawerListTile extends StatelessWidget {
     return ListTile(
       title: Text(
         title,
-        style: context.textTheme.labelLarge,
       ),
       onTap: onTap,
       leading: Icon(icon),

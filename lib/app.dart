@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nost/core/i18n/strings.g.dart';
 import 'package:nost/core/navigation/router/router.dart';
 import 'package:nost/core/res/theme.dart';
+import 'package:nost/core/theme/theme_mode.dart';
 import 'package:nost/core/utils/loading.dart';
 
 final scaffoldMessengerKeyProvider = Provider(
@@ -17,13 +18,13 @@ final class App extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(routerProvider);
     final isLoading = ref.watch(loadingNotifierProvider);
+    final themeMode = ref.watch(themeModeNotifierProvider);
 
     return MaterialApp.router(
       title: i18n.appTitle,
       debugShowCheckedModeBanner: false,
       routerConfig: router,
-      // TODO(taisei): デフォルトはダークモード。切り替えられるように修正する
-      themeMode: ThemeMode.dark,
+      themeMode: themeMode,
       scaffoldMessengerKey: ref.watch(scaffoldMessengerKeyProvider),
       locale: TranslationProvider.of(context).flutterLocale,
       supportedLocales: AppLocaleUtils.supportedLocales,

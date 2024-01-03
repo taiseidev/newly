@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nost/app.dart';
 import 'package:nost/core/i18n/strings.g.dart';
+import 'package:nost/core/shared_preference/shared_preference_instance.dart';
 import 'package:nost/core/utils/flavor.dart';
 import 'package:nost/core/utils/logger.dart';
 import 'package:nost/features/activities/domain/repositories/activity_repository.dart';
@@ -17,6 +18,8 @@ Future<void> main() async {
 
   // 多言語対応の設定
   LocaleSettings.useDeviceLocale();
+
+  await SharedPreferenceInstance.init();
 
   // ログの設定
   NewlyLogger.config();
