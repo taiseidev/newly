@@ -40,8 +40,6 @@ final class ScaffoldWithNavBar extends StatelessWidget {
       ),
       body: navigationShell,
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.white.withOpacity(0.6),
         showSelectedLabels: false,
         showUnselectedLabels: false,
         currentIndex: navigationShell.currentIndex,

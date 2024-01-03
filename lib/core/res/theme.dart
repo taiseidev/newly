@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nost/color_schemes.g.dart';
-import 'package:nost/core/extension/context_ext.dart';
 import 'package:nost/core/res/typography.dart';
 
 ThemeData getLightTheme(BuildContext context) {
@@ -13,9 +12,6 @@ ThemeData getLightTheme(BuildContext context) {
       backgroundColor: Colors.transparent,
     ),
     textTheme: getTypography(context),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: context.colorScheme.secondary,
-    ),
   );
 }
 
@@ -29,9 +25,6 @@ ThemeData getDarkTheme(BuildContext context) {
       backgroundColor: Colors.transparent,
     ),
     textTheme: getTypography(context),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: context.colorScheme.secondary,
-    ),
     badgeTheme: const BadgeThemeData(
       backgroundColor: Colors.red,
     ),
