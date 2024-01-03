@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 1
+/// Strings: 8
 ///
-/// Built on 2024-01-03 at 06:17 UTC
+/// Built on 2024-01-03 at 10:03 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -150,6 +150,23 @@ class _StringsJa implements BaseTranslations<AppLocale, _StringsJa> {
 
 	// Translations
 	String get appTitle => 'Newly';
+	late final _StringsDrawerJa drawer = _StringsDrawerJa._(_root);
+}
+
+// Path: drawer
+class _StringsDrawerJa {
+	_StringsDrawerJa._(this._root);
+
+	final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	String get theme => 'テーマ設定';
+	String get contact => 'お問い合わせ';
+	String get termOfService => '利用規約';
+	String get privacyPolicy => 'プライバシーポリシー';
+	String get feedback => 'フィードバック';
+	String get logout => 'ログアウト';
+	String version({required Object version}) => 'ver. ${version}';
 }
 
 /// Flat map(s) containing all translations.
@@ -159,6 +176,13 @@ extension on _StringsJa {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
 			case 'appTitle': return 'Newly';
+			case 'drawer.theme': return 'テーマ設定';
+			case 'drawer.contact': return 'お問い合わせ';
+			case 'drawer.termOfService': return '利用規約';
+			case 'drawer.privacyPolicy': return 'プライバシーポリシー';
+			case 'drawer.feedback': return 'フィードバック';
+			case 'drawer.logout': return 'ログアウト';
+			case 'drawer.version': return ({required Object version}) => 'ver. ${version}';
 			default: return null;
 		}
 	}

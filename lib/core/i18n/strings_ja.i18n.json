@@ -1,3 +1,12 @@
 {
-    "appTitle": "Newly"
+    "appTitle": "Newly",
+    "drawer": {
+        "theme": "テーマ設定",
+        "contact": "お問い合わせ",
+        "termOfService": "利用規約",
+        "privacyPolicy": "プライバシーポリシー",
+        "feedback": "フィードバック",
+        "logout": "ログアウト",
+        "version": "ver. $version"
+    }
 }

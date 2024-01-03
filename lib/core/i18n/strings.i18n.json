@@ -1,3 +1,12 @@
 {
-    "appTitle": "Newly"
+    "appTitle": "Newly",
+    "drawer": {
+        "theme": "Theme Setting",
+        "contact": "Contact",
+        "termOfService": "Term Of Service",
+        "privacyPolicy": "Privacy Policy",
+        "feedback": "Feedback",
+        "logout": "Logout",
+        "version": "ver. $version"
+    }
 }
