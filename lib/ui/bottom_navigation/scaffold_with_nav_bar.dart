@@ -3,7 +3,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nost/core/extension/context_ext.dart';
 import 'package:nost/core/i18n/strings.g.dart';
-import 'package:nost/ui/common_widget/padded_icon_button.dart';
 
 final class ScaffoldWithNavBar extends StatelessWidget {
   const ScaffoldWithNavBar({
@@ -19,15 +18,13 @@ final class ScaffoldWithNavBar extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        leading: PaddedIconButton(
-          padding: const EdgeInsets.only(left: 24),
+        leading: IconButton(
           onPressed: () {},
           icon: const FaIcon(FontAwesomeIcons.barsStaggered),
         ),
         title: Text(i18n.appTitle),
         actions: [
-          PaddedIconButton(
-            padding: const EdgeInsets.only(right: 24),
+          IconButton(
             onPressed: () {},
             icon: Badge(
               child: FaIcon(
@@ -42,6 +39,8 @@ final class ScaffoldWithNavBar extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         showSelectedLabels: false,
         showUnselectedLabels: false,
+        // Themeが適切に適用されないためここで設定
+        selectedItemColor: context.colorScheme.onSurface,
         currentIndex: navigationShell.currentIndex,
         onTap: (index) {
           navigationShell.goBranch(
