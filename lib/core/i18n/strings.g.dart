@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 3
+/// Strings: 1
 ///
-/// Built on 2023-12-31 at 18:03 UTC
+/// Built on 2024-01-03 at 04:55 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -149,19 +149,7 @@ class _StringsJa implements BaseTranslations<AppLocale, _StringsJa> {
 	late final _StringsJa _root = this; // ignore: unused_field
 
 	// Translations
-	String hello({required Object name}) => 'こんにちは ${name}';
-	late final _StringsLoginJa login = _StringsLoginJa._(_root);
-}
-
-// Path: login
-class _StringsLoginJa {
-	_StringsLoginJa._(this._root);
-
-	final _StringsJa _root; // ignore: unused_field
-
-	// Translations
-	String get success => 'ログインが成功しました！';
-	String get fail => 'ログインに失敗しました...';
+	String get appTitle => 'Newly';
 }
 
 /// Flat map(s) containing all translations.
@@ -170,9 +158,7 @@ class _StringsLoginJa {
 extension on _StringsJa {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
-			case 'hello': return ({required Object name}) => 'こんにちは ${name}';
-			case 'login.success': return 'ログインが成功しました！';
-			case 'login.fail': return 'ログインに失敗しました...';
+			case 'appTitle': return 'Newly';
 			default: return null;
 		}
 	}

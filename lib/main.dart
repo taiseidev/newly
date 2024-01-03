@@ -1,4 +1,3 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nost/app.dart';
@@ -21,31 +20,34 @@ Future<void> main() async {
 
   // ログの設定
   NewlyLogger.config();
+  logger.i('env: ${Flavor.environment.name}');
 
-  logger.i('env: ${Flavor.environment}');
-
+  // Supabaseの設定
   await Supabase.initialize(
     url: Flavor.projectUrl,
     anonKey: Flavor.apiKey,
   );
 
   runApp(
-    DevicePreview(
-      enabled: false,
-      builder: (context) => TranslationProvider(
-        child: ProviderScope(
-          overrides: [
-            authRepositoryProvider.overrideWith(
-              (_) => SupabaseAuthRepository(),
-            ),
-            activityRepositoryProvider.overrideWith(
-              (_) => SupabaseActivityRepository(),
-            ),
-            // userProvider.overrideWith((ref) => supabase.auth.currentUser),
-          ],
-          child: const App(),
-        ),
+    TranslationProvider(
+      child: ProviderScope(
+        overrides: _getOverrides(),
+        child: const App(),
       ),
     ),
   );
+}
+
+List<Override> _getOverrides() {
+  if (Flavor.environment == FlavorType.dev) {
+    return [
+      authRepositoryProvider.overrideWith(
+        (_) => SupabaseAuthRepository(),
+      ),
+      activityRepositoryProvider.overrideWith(
+        (_) => SupabaseActivityRepository(),
+      ),
+    ];
+  }
+  return [];
 }

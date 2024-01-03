@@ -13,23 +13,23 @@ final scaffoldMessengerKeyProvider = Provider(
 final class App extends HookConsumerWidget {
   const App({super.key});
 
-  static const appName = 'Newly';
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(routerProvider);
     final isLoading = ref.watch(loadingNotifierProvider);
 
     return MaterialApp.router(
-      title: appName,
+      title: i18n.appTitle,
       debugShowCheckedModeBanner: false,
       routerConfig: router,
+      // TODO(taisei): デフォルトはダークモード。切り替えられるように修正する
+      themeMode: ThemeMode.dark,
       scaffoldMessengerKey: ref.watch(scaffoldMessengerKeyProvider),
       locale: TranslationProvider.of(context).flutterLocale,
       supportedLocales: AppLocaleUtils.supportedLocales,
       localizationsDelegates: GlobalMaterialLocalizations.delegates,
-      theme: getLightTheme(),
-      darkTheme: getDarkTheme(),
+      theme: getLightTheme(context),
+      darkTheme: getDarkTheme(context),
       builder: (context, child) => Stack(
         children: [
           child!,

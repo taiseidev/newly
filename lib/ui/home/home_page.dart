@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:nost/core/extension/context_ext.dart';
 import 'package:nost/features/activities/domain/activity.dart';
 import 'package:nost/ui/home/home_notifier.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -23,24 +24,9 @@ class HomePage extends ConsumerWidget {
             vertical: 8,
             horizontal: 24,
           ),
-          child: ShaderMask(
-            shaderCallback: (bounds) => const LinearGradient(
-              colors: [
-                Color.fromARGB(255, 29, 97, 137),
-                Color(0xff11b4e0),
-                Color(0xff2fe7d8),
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ).createShader(bounds),
-            child: const Text(
-              '今日の新しいこと',
-              style: TextStyle(
-                // The color must be set to white for this to work
-                color: Colors.white,
-                fontSize: 24,
-              ),
-            ),
+          child: Text(
+            '今日の新しいこと',
+            style: context.textTheme.titleLarge,
           ),
         ),
         Padding(
@@ -63,24 +49,9 @@ class HomePage extends ConsumerWidget {
             vertical: 8,
             horizontal: 24,
           ),
-          child: ShaderMask(
-            shaderCallback: (bounds) => const LinearGradient(
-              colors: [
-                Color.fromARGB(255, 68, 135, 174),
-                Color.fromARGB(255, 65, 195, 231),
-                Color.fromARGB(255, 145, 254, 245),
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ).createShader(bounds),
-            child: const Text(
-              '履歴一覧',
-              style: TextStyle(
-                fontSize: 24,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+          child: Text(
+            '履歴一覧',
+            style: context.textTheme.titleLarge,
           ),
         ),
         switch (activities) {
@@ -142,7 +113,7 @@ class _ActivityItem extends ConsumerWidget {
         height: 200,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(20)),
-          color: Colors.white,
+          color: context.colorScheme.onTertiaryContainer,
           boxShadow: [
             BoxShadow(
               color: Colors.black.withAlpha(100),
@@ -174,11 +145,7 @@ class _ActivityItem extends ConsumerWidget {
                 const SizedBox(width: 16),
                 Text(
                   '料理',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: const Color(0xff10425f).withOpacity(0.6),
-                  ),
+                  style: context.textTheme.labelMedium,
                 ),
                 const Spacer(),
                 const FaIcon(

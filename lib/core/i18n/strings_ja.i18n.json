@@ -1,7 +1,3 @@
 {
-    "hello": "こんにちは $name",
-    "login": {
-        "success": "ログインが成功しました！",
-        "fail": "ログインに失敗しました..."
-    }
+    "appTitle": "Newly"
 }
