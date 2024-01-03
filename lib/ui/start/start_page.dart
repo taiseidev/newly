@@ -32,27 +32,12 @@ class StartPage extends HookConsumerWidget {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  ref.read(startNotifierProvider.notifier).signUpWithEmail(
-                        email: 'reeksge@gmail.com',
-                        password: '123456',
-                      );
-                },
-                child: const Text('新規会員登録'),
-              ),
-              ElevatedButton(
-                onPressed: () {
                   ref.read(startNotifierProvider.notifier).signInWithEmail(
                         email: 'reeksge@gmail.com',
                         password: '123456',
                       );
                 },
                 child: const Text('ログイン'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  ref.read(startNotifierProvider.notifier).signInWithGoogle();
-                },
-                child: const Text('Googleでログイン'),
               ),
             ],
           ),
