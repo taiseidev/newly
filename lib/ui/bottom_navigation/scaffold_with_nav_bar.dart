@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nost/core/extension/context_ext.dart';
 import 'package:nost/core/i18n/strings.g.dart';
 import 'package:nost/ui/common_widget/padded_icon_button.dart';
 
@@ -26,10 +27,13 @@ final class ScaffoldWithNavBar extends StatelessWidget {
         title: Text(i18n.appTitle),
         actions: [
           PaddedIconButton(
-            padding: const EdgeInsets.only(left: 24),
+            padding: const EdgeInsets.only(right: 24),
             onPressed: () {},
-            icon: const Badge(
-              child: FaIcon(FontAwesomeIcons.solidBell),
+            icon: Badge(
+              child: FaIcon(
+                FontAwesomeIcons.solidBell,
+                color: context.colorScheme.inverseSurface,
+              ),
             ),
           ),
         ],

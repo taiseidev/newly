@@ -9,8 +9,8 @@ ThemeData getLightTheme(BuildContext context) {
     colorScheme: lightColorScheme,
   );
   return base.copyWith(
-    appBarTheme: AppBarTheme(
-      backgroundColor: Colors.transparent.withOpacity(0),
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Colors.transparent,
     ),
     textTheme: getTypography(context),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
@@ -25,12 +25,15 @@ ThemeData getDarkTheme(BuildContext context) {
     colorScheme: darkColorScheme,
   );
   return base.copyWith(
-    appBarTheme: AppBarTheme(
-      backgroundColor: Colors.transparent.withOpacity(1),
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Colors.transparent,
     ),
     textTheme: getTypography(context),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: context.colorScheme.secondary,
+    ),
+    badgeTheme: const BadgeThemeData(
+      backgroundColor: Colors.red,
     ),
   );
 }
