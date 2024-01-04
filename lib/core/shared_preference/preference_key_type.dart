@@ -4,12 +4,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 enum PreferenceKeyType {
   userToken,
   themeMode,
+  appTheme,
 }
 
 extension PreferenceKeyTypeEx on PreferenceKeyType {
   String get name => switch (this) {
         PreferenceKeyType.userToken => 'userToken',
         PreferenceKeyType.themeMode => 'themeMode',
+        PreferenceKeyType.appTheme => 'appTheme',
       };
 
   SharedPreferences get _prefs => SharedPreferenceInstance().prefs;

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 import 'package:nost/core/extension/context_ext.dart';
 import 'package:nost/core/i18n/strings.g.dart';
+import 'package:nost/core/theme/app_theme.dart';
 import 'package:nost/core/theme/theme_mode.dart';
 
 class ScaffoldWithNavBar extends StatelessWidget {
@@ -74,11 +76,12 @@ class ScaffoldWithNavBar extends StatelessWidget {
   }
 }
 
-class _Drawer extends StatelessWidget {
+class _Drawer extends HookConsumerWidget {
   const _Drawer();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isDisplayColorTheme = useState(false);
     final str = i18n.drawer;
     return ClipRRect(
       borderRadius: const BorderRadius.only(
@@ -92,12 +95,29 @@ class _Drawer extends StatelessWidget {
             const _DrawerHeader(),
             _DrawerListTile(
               title: str.theme,
-              onTap: () {},
+              onTap: () =>
+                  isDisplayColorTheme.value = !isDisplayColorTheme.value,
               icon: Icons.contrast,
+              trailingIcon: isDisplayColorTheme.value
+                  ? Icons.expand_more
+                  : Icons.chevron_right,
+            ),
+            Visibility(
+              visible: isDisplayColorTheme.value,
+              maintainAnimation: true,
+              maintainState: true,
+              child: AnimatedOpacity(
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.fastOutSlowIn,
+                opacity: isDisplayColorTheme.value ? 1 : 0,
+                child: _ThemeSetting(),
+              ),
             ),
             _DrawerListTile(
               title: str.contact,
-              onTap: () {},
+              onTap: () {
+                ref.read(appThemeNotifierProvider.notifier).update('fancy');
+              },
               icon: Icons.contact_mail,
             ),
             _DrawerListTile(
@@ -195,11 +215,14 @@ class _DrawerListTile extends StatelessWidget {
     required this.title,
     required this.onTap,
     required this.icon,
+    // ignore: unused_element
+    this.trailingIcon = Icons.chevron_right,
   });
 
   final String title;
   final VoidCallback onTap;
   final IconData icon;
+  final IconData trailingIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -209,7 +232,75 @@ class _DrawerListTile extends StatelessWidget {
       ),
       onTap: onTap,
       leading: Icon(icon),
-      trailing: const Icon(Icons.chevron_right),
+      trailing: Icon(trailingIcon),
+    );
+  }
+}
+
+class _ThemeSetting extends ConsumerWidget {
+  _ThemeSetting({super.key});
+
+  final List<Color> colors = [
+    const Color(0xFF5555A9),
+    const Color(0xFF006C4F),
+    const Color(0xFF006A68),
+    const Color(0xFF355CA8),
+    const Color(0xFFB32824),
+    const Color(0xFF705D00),
+  ];
+  final List<String> colorNames = [
+    '日食',
+    '調和',
+    'オアシス',
+    '静寂',
+    '日没',
+    '禅',
+  ];
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final onTapCallbacks = <VoidCallback>[
+      () => ref.read(appThemeNotifierProvider.notifier).update('eclipse'),
+      () => ref.read(appThemeNotifierProvider.notifier).update('harmony'),
+      () => ref.read(appThemeNotifierProvider.notifier).update('oasis'),
+      () => ref.read(appThemeNotifierProvider.notifier).update('serenity'),
+      () => ref.read(appThemeNotifierProvider.notifier).update('sunset'),
+      () => ref.read(appThemeNotifierProvider.notifier).update('zen'),
+    ];
+
+    return SizedBox(
+      height: 250,
+      child: GridView.builder(
+        physics: const NeverScrollableScrollPhysics(),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+        ),
+        itemCount: colors.length,
+        itemBuilder: (context, index) {
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              GestureDetector(
+                onTap: onTapCallbacks[index],
+                child: CircleAvatar(
+                  radius: 15,
+                  backgroundColor: colors[index],
+                ),
+              ),
+              // SizedBoxを小さくするか、必要ない場合は削除
+              const SizedBox(height: 4),
+              Text(
+                colorNames[index],
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  color: colors[index],
+                ),
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 }

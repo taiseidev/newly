@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:nost/color_schemes.g.dart';
 import 'package:nost/core/res/typography.dart';
 
-ThemeData getLightTheme(BuildContext context) {
+ThemeData getLightTheme(BuildContext context, ColorScheme colorScheme) {
   final base = ThemeData(
     useMaterial3: true,
-    colorScheme: lightColorScheme,
+    colorScheme: colorScheme,
   );
   return base.copyWith(
     appBarTheme: const AppBarTheme(
@@ -15,10 +14,10 @@ ThemeData getLightTheme(BuildContext context) {
   );
 }
 
-ThemeData getDarkTheme(BuildContext context) {
+ThemeData getDarkTheme(BuildContext context, ColorScheme colorScheme) {
   final base = ThemeData(
     useMaterial3: true,
-    colorScheme: darkColorScheme,
+    colorScheme: colorScheme,
   );
   return base.copyWith(
     appBarTheme: const AppBarTheme(

@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nost/core/i18n/strings.g.dart';
 import 'package:nost/core/navigation/router/router.dart';
 import 'package:nost/core/res/theme.dart';
+import 'package:nost/core/theme/app_theme.dart';
 import 'package:nost/core/theme/theme_mode.dart';
 import 'package:nost/core/utils/loading.dart';
 
@@ -19,6 +20,7 @@ final class App extends HookConsumerWidget {
     final router = ref.watch(routerProvider);
     final isLoading = ref.watch(loadingNotifierProvider);
     final themeMode = ref.watch(themeModeNotifierProvider);
+    final appTheme = ref.watch(appThemeNotifierProvider);
 
     return MaterialApp.router(
       title: i18n.appTitle,
@@ -29,8 +31,14 @@ final class App extends HookConsumerWidget {
       locale: TranslationProvider.of(context).flutterLocale,
       supportedLocales: AppLocaleUtils.supportedLocales,
       localizationsDelegates: GlobalMaterialLocalizations.delegates,
-      theme: getLightTheme(context),
-      darkTheme: getDarkTheme(context),
+      theme: getLightTheme(
+        context,
+        appTheme.$1,
+      ),
+      darkTheme: getDarkTheme(
+        context,
+        appTheme.$2,
+      ),
       builder: (context, child) => Stack(
         children: [
           child!,
