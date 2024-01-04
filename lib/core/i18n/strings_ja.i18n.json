@@ -1,5 +1,13 @@
 {
     "appTitle": "Newly",
+    "appTheme": {
+        "eclipse": "日食",
+        "harmony": "調和",
+        "oasis": "オアシス",
+        "serenity": "静寂",
+        "sunset": "日没",
+        "zen": "禅"
+    },
     "drawer": {
         "theme": "テーマ設定",
         "contact": "お問い合わせ",

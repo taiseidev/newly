@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 8
+/// Strings: 14
 ///
-/// Built on 2024-01-04 at 09:30 UTC
+/// Built on 2024-01-04 at 11:40 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -150,7 +150,23 @@ class _StringsJa implements BaseTranslations<AppLocale, _StringsJa> {
 
 	// Translations
 	String get appTitle => 'Newly';
+	late final _StringsAppThemeJa appTheme = _StringsAppThemeJa._(_root);
 	late final _StringsDrawerJa drawer = _StringsDrawerJa._(_root);
+}
+
+// Path: appTheme
+class _StringsAppThemeJa {
+	_StringsAppThemeJa._(this._root);
+
+	final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	String get eclipse => '日食';
+	String get harmony => '調和';
+	String get oasis => 'オアシス';
+	String get serenity => '静寂';
+	String get sunset => '日没';
+	String get zen => '禅';
 }
 
 // Path: drawer
@@ -176,6 +192,12 @@ extension on _StringsJa {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
 			case 'appTitle': return 'Newly';
+			case 'appTheme.eclipse': return '日食';
+			case 'appTheme.harmony': return '調和';
+			case 'appTheme.oasis': return 'オアシス';
+			case 'appTheme.serenity': return '静寂';
+			case 'appTheme.sunset': return '日没';
+			case 'appTheme.zen': return '禅';
 			case 'drawer.theme': return 'テーマ設定';
 			case 'drawer.contact': return 'お問い合わせ';
 			case 'drawer.termOfService': return '利用規約';

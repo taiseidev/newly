@@ -1,5 +1,13 @@
 {
     "appTitle": "Newly",
+    "appTheme": {
+        "eclipse": "eclipse",
+        "harmony": "harmony",
+        "oasis": "oasis",
+        "serenity": "serenity",
+        "sunset": "sunset",
+        "zen": "zen"
+    },
     "drawer": {
         "theme": "Theme Setting",
         "contact": "Contact",
