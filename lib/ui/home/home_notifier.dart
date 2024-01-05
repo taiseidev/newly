@@ -11,4 +11,18 @@ class HomeNotifier extends _$HomeNotifier {
     final activities = ref.read(activityServiceProvider).fetchAll();
     return activities;
   }
+
+  Future<void> addActivity({
+    required String title,
+    required String description,
+  }) async {
+    state = const AsyncLoading();
+    await AsyncValue.guard(
+      () async => ref.read(activityServiceProvider).create(
+            title: title,
+            description: description,
+          ),
+    );
+    ref.invalidateSelf();
+  }
 }
