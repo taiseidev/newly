@@ -42,6 +42,31 @@ final class ActivityService {
     }
   }
 
+  Future<void> update({
+    required Activity currentActivity,
+    String? newTitle,
+    String? newDescription,
+  }) async {
+    var newActivity = currentActivity;
+
+    if (newTitle != null) {
+      newActivity = newActivity.copyWith(title: newTitle);
+    }
+
+    if (newDescription != null) {
+      newActivity = newActivity.copyWith(description: newDescription);
+    }
+
+    try {
+      await repository.update(
+        newActivity: newActivity,
+      );
+    } on Exception catch (e) {
+      logger.e(e);
+      throw AppException.general(e);
+    }
+  }
+
   Future<List<Activity>> fetchAll() async {
     late List<Activity> activities;
     try {

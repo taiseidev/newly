@@ -10,5 +10,8 @@ ActivityRepository activityRepository(ActivityRepositoryRef ref) =>
 abstract class ActivityRepository {
   Future<void> insert(Activity activity);
   Future<List<Activity>> fetchAll();
+  Future<void> update({
+    required Activity newActivity,
+  });
   Future<void> delete(String activityId);
 }

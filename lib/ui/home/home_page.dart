@@ -36,6 +36,25 @@ class HomePage extends HookConsumerWidget {
                         children: [
                           Text(activity.title ?? ''),
                           Text(activity.description ?? ''),
+                          const Text('↓更新処理'),
+                          const Text('タイトル'),
+                          TextFormField(
+                            controller: titleController,
+                          ),
+                          const Text('内容'),
+                          TextFormField(
+                            controller: descriptionController,
+                          ),
+                          ElevatedButton(
+                            onPressed: () => ref
+                                .read(homeNotifierProvider.notifier)
+                                .updateActivity(
+                                  activity: activity,
+                                  title: titleController.text,
+                                  description: descriptionController.text,
+                                ),
+                            child: const Text('追加'),
+                          ),
                           ElevatedButton(
                             onPressed: () => ref
                                 .read(homeNotifierProvider.notifier)
@@ -51,6 +70,7 @@ class HomePage extends HookConsumerWidget {
               ),
             ),
           ),
+          const Text('↓登録処理'),
           const Text('タイトル'),
           TextFormField(
             controller: titleController,

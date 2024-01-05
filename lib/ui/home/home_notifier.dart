@@ -26,6 +26,22 @@ class HomeNotifier extends _$HomeNotifier {
     ref.invalidateSelf();
   }
 
+  Future<void> updateActivity({
+    required Activity activity,
+    String? title,
+    String? description,
+  }) async {
+    state = const AsyncLoading();
+    await AsyncValue.guard(
+      () async => ref.read(activityServiceProvider).update(
+            currentActivity: activity,
+            newTitle: title,
+            newDescription: description,
+          ),
+    );
+    ref.invalidateSelf();
+  }
+
   Future<void> deleteActivity(String activityId) async {
     state = const AsyncLoading();
     await AsyncValue.guard(

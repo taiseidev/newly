@@ -27,6 +27,15 @@ final class SupabaseActivityRepository extends ActivityRepository {
   }
 
   @override
+  Future<void> update({
+    required Activity newActivity,
+  }) async {
+    await supabase.from(_tableName).update(newActivity.toJson()).match(
+      {_activityId: newActivity.activityId},
+    );
+  }
+
+  @override
   Future<void> delete(String activityId) async {
     await supabase.from(_tableName).delete().match({_activityId: activityId});
   }
