@@ -7,12 +7,12 @@ part 'activity.g.dart';
 class Activity with _$Activity {
   factory Activity({
     required String activityId,
+    required DateTime createdAt,
+    required DateTime updatedAt,
     String? userId,
     String? title,
     String? description,
     List<String>? imageUrls,
-    DateTime? createdAt,
-    DateTime? updatedAt,
   }) = _Activity;
 
   factory Activity.fromJson(Map<String, dynamic> json) =>

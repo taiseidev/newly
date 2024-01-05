@@ -21,12 +21,12 @@ Activity _$ActivityFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Activity {
   String get activityId => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime get updatedAt => throw _privateConstructorUsedError;
   String? get userId => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   List<String>? get imageUrls => throw _privateConstructorUsedError;
-  DateTime? get createdAt => throw _privateConstructorUsedError;
-  DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,12 +41,12 @@ abstract class $ActivityCopyWith<$Res> {
   @useResult
   $Res call(
       {String activityId,
+      DateTime createdAt,
+      DateTime updatedAt,
       String? userId,
       String? title,
       String? description,
-      List<String>? imageUrls,
-      DateTime? createdAt,
-      DateTime? updatedAt});
+      List<String>? imageUrls});
 }
 
 /// @nodoc
@@ -63,18 +63,26 @@ class _$ActivityCopyWithImpl<$Res, $Val extends Activity>
   @override
   $Res call({
     Object? activityId = null,
+    Object? createdAt = null,
+    Object? updatedAt = null,
     Object? userId = freezed,
     Object? title = freezed,
     Object? description = freezed,
     Object? imageUrls = freezed,
-    Object? createdAt = freezed,
-    Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
       activityId: null == activityId
           ? _value.activityId
           : activityId // ignore: cast_nullable_to_non_nullable
               as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      updatedAt: null == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -91,14 +99,6 @@ class _$ActivityCopyWithImpl<$Res, $Val extends Activity>
           ? _value.imageUrls
           : imageUrls // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      updatedAt: freezed == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
     ) as $Val);
   }
 }
@@ -113,12 +113,12 @@ abstract class _$$ActivityImplCopyWith<$Res>
   @useResult
   $Res call(
       {String activityId,
+      DateTime createdAt,
+      DateTime updatedAt,
       String? userId,
       String? title,
       String? description,
-      List<String>? imageUrls,
-      DateTime? createdAt,
-      DateTime? updatedAt});
+      List<String>? imageUrls});
 }
 
 /// @nodoc
@@ -133,18 +133,26 @@ class __$$ActivityImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? activityId = null,
+    Object? createdAt = null,
+    Object? updatedAt = null,
     Object? userId = freezed,
     Object? title = freezed,
     Object? description = freezed,
     Object? imageUrls = freezed,
-    Object? createdAt = freezed,
-    Object? updatedAt = freezed,
   }) {
     return _then(_$ActivityImpl(
       activityId: null == activityId
           ? _value.activityId
           : activityId // ignore: cast_nullable_to_non_nullable
               as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      updatedAt: null == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -161,14 +169,6 @@ class __$$ActivityImplCopyWithImpl<$Res>
           ? _value._imageUrls
           : imageUrls // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      updatedAt: freezed == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
     ));
   }
 }
@@ -178,12 +178,12 @@ class __$$ActivityImplCopyWithImpl<$Res>
 class _$ActivityImpl implements _Activity {
   _$ActivityImpl(
       {required this.activityId,
+      required this.createdAt,
+      required this.updatedAt,
       this.userId,
       this.title,
       this.description,
-      final List<String>? imageUrls,
-      this.createdAt,
-      this.updatedAt})
+      final List<String>? imageUrls})
       : _imageUrls = imageUrls;
 
   factory _$ActivityImpl.fromJson(Map<String, dynamic> json) =>
@@ -191,6 +191,10 @@ class _$ActivityImpl implements _Activity {
 
   @override
   final String activityId;
+  @override
+  final DateTime createdAt;
+  @override
+  final DateTime updatedAt;
   @override
   final String? userId;
   @override
@@ -208,13 +212,8 @@ class _$ActivityImpl implements _Activity {
   }
 
   @override
-  final DateTime? createdAt;
-  @override
-  final DateTime? updatedAt;
-
-  @override
   String toString() {
-    return 'Activity(activityId: $activityId, userId: $userId, title: $title, description: $description, imageUrls: $imageUrls, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Activity(activityId: $activityId, createdAt: $createdAt, updatedAt: $updatedAt, userId: $userId, title: $title, description: $description, imageUrls: $imageUrls)';
   }
 
   @override
@@ -224,16 +223,16 @@ class _$ActivityImpl implements _Activity {
             other is _$ActivityImpl &&
             (identical(other.activityId, activityId) ||
                 other.activityId == activityId) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             const DeepCollectionEquality()
-                .equals(other._imageUrls, _imageUrls) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
+                .equals(other._imageUrls, _imageUrls));
   }
 
   @JsonKey(ignore: true)
@@ -241,12 +240,12 @@ class _$ActivityImpl implements _Activity {
   int get hashCode => Object.hash(
       runtimeType,
       activityId,
+      createdAt,
+      updatedAt,
       userId,
       title,
       description,
-      const DeepCollectionEquality().hash(_imageUrls),
-      createdAt,
-      updatedAt);
+      const DeepCollectionEquality().hash(_imageUrls));
 
   @JsonKey(ignore: true)
   @override
@@ -265,18 +264,22 @@ class _$ActivityImpl implements _Activity {
 abstract class _Activity implements Activity {
   factory _Activity(
       {required final String activityId,
+      required final DateTime createdAt,
+      required final DateTime updatedAt,
       final String? userId,
       final String? title,
       final String? description,
-      final List<String>? imageUrls,
-      final DateTime? createdAt,
-      final DateTime? updatedAt}) = _$ActivityImpl;
+      final List<String>? imageUrls}) = _$ActivityImpl;
 
   factory _Activity.fromJson(Map<String, dynamic> json) =
       _$ActivityImpl.fromJson;
 
   @override
   String get activityId;
+  @override
+  DateTime get createdAt;
+  @override
+  DateTime get updatedAt;
   @override
   String? get userId;
   @override
@@ -285,10 +288,6 @@ abstract class _Activity implements Activity {
   String? get description;
   @override
   List<String>? get imageUrls;
-  @override
-  DateTime? get createdAt;
-  @override
-  DateTime? get updatedAt;
   @override
   @JsonKey(ignore: true)
   _$$ActivityImplCopyWith<_$ActivityImpl> get copyWith =>
