@@ -8,28 +8,13 @@ class Activity with _$Activity {
   factory Activity({
     required String activityId,
     String? userId,
-    // String? icon,
     String? title,
-    // Tag? tag,
     String? description,
-    String? imageUrl,
-    String? createdAt,
+    List<String>? imageUrls,
+    DateTime? createdAt,
+    DateTime? updatedAt,
   }) = _Activity;
 
   factory Activity.fromJson(Map<String, dynamic> json) =>
       _$ActivityFromJson(json);
 }
-
-// class TagConverter implements JsonConverter<Tag, String> {
-//   const TagConverter();
-
-//   @override
-//   Tag fromJson(String json) {
-//     return Tag(tagId: , name: );
-//   }
-
-//   @override
-//   String toJson(DateTime dateTime) {
-//     return dateTime.toLocal().toString();
-//   }
-// }

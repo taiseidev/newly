@@ -18,8 +18,9 @@ _$ActivityImpl _$$ActivityImplFromJson(Map<String, dynamic> json) =>
             'user_id',
             'title',
             'description',
-            'image_url',
-            'created_at'
+            'image_urls',
+            'created_at',
+            'updated_at'
           ],
         );
         final val = _$ActivityImpl(
@@ -27,16 +28,21 @@ _$ActivityImpl _$$ActivityImplFromJson(Map<String, dynamic> json) =>
           userId: $checkedConvert('user_id', (v) => v as String?),
           title: $checkedConvert('title', (v) => v as String?),
           description: $checkedConvert('description', (v) => v as String?),
-          imageUrl: $checkedConvert('image_url', (v) => v as String?),
-          createdAt: $checkedConvert('created_at', (v) => v as String?),
+          imageUrls: $checkedConvert('image_urls',
+              (v) => (v as List<dynamic>?)?.map((e) => e as String).toList()),
+          createdAt: $checkedConvert('created_at',
+              (v) => v == null ? null : DateTime.parse(v as String)),
+          updatedAt: $checkedConvert('updated_at',
+              (v) => v == null ? null : DateTime.parse(v as String)),
         );
         return val;
       },
       fieldKeyMap: const {
         'activityId': 'activity_id',
         'userId': 'user_id',
-        'imageUrl': 'image_url',
-        'createdAt': 'created_at'
+        'imageUrls': 'image_urls',
+        'createdAt': 'created_at',
+        'updatedAt': 'updated_at'
       },
     );
 
@@ -46,6 +52,7 @@ Map<String, dynamic> _$$ActivityImplToJson(_$ActivityImpl instance) =>
       'user_id': instance.userId,
       'title': instance.title,
       'description': instance.description,
-      'image_url': instance.imageUrl,
-      'created_at': instance.createdAt,
+      'image_urls': instance.imageUrls,
+      'created_at': instance.createdAt?.toIso8601String(),
+      'updated_at': instance.updatedAt?.toIso8601String(),
     };

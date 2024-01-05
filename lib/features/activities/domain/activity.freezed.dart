@@ -21,11 +21,12 @@ Activity _$ActivityFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Activity {
   String get activityId => throw _privateConstructorUsedError;
-  String? get userId => throw _privateConstructorUsedError; // String? icon,
-  String? get title => throw _privateConstructorUsedError; // Tag? tag,
+  String? get userId => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
-  String? get imageUrl => throw _privateConstructorUsedError;
-  String? get createdAt => throw _privateConstructorUsedError;
+  List<String>? get imageUrls => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
+  DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,8 +44,9 @@ abstract class $ActivityCopyWith<$Res> {
       String? userId,
       String? title,
       String? description,
-      String? imageUrl,
-      String? createdAt});
+      List<String>? imageUrls,
+      DateTime? createdAt,
+      DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -64,8 +66,9 @@ class _$ActivityCopyWithImpl<$Res, $Val extends Activity>
     Object? userId = freezed,
     Object? title = freezed,
     Object? description = freezed,
-    Object? imageUrl = freezed,
+    Object? imageUrls = freezed,
     Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
       activityId: null == activityId
@@ -84,14 +87,18 @@ class _$ActivityCopyWithImpl<$Res, $Val extends Activity>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      imageUrl: freezed == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+      imageUrls: freezed == imageUrls
+          ? _value.imageUrls
+          : imageUrls // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DateTime?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -109,8 +116,9 @@ abstract class _$$ActivityImplCopyWith<$Res>
       String? userId,
       String? title,
       String? description,
-      String? imageUrl,
-      String? createdAt});
+      List<String>? imageUrls,
+      DateTime? createdAt,
+      DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -128,8 +136,9 @@ class __$$ActivityImplCopyWithImpl<$Res>
     Object? userId = freezed,
     Object? title = freezed,
     Object? description = freezed,
-    Object? imageUrl = freezed,
+    Object? imageUrls = freezed,
     Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_$ActivityImpl(
       activityId: null == activityId
@@ -148,14 +157,18 @@ class __$$ActivityImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      imageUrl: freezed == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+      imageUrls: freezed == imageUrls
+          ? _value._imageUrls
+          : imageUrls // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DateTime?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -168,8 +181,10 @@ class _$ActivityImpl implements _Activity {
       this.userId,
       this.title,
       this.description,
-      this.imageUrl,
-      this.createdAt});
+      final List<String>? imageUrls,
+      this.createdAt,
+      this.updatedAt})
+      : _imageUrls = imageUrls;
 
   factory _$ActivityImpl.fromJson(Map<String, dynamic> json) =>
       _$$ActivityImplFromJson(json);
@@ -178,20 +193,28 @@ class _$ActivityImpl implements _Activity {
   final String activityId;
   @override
   final String? userId;
-// String? icon,
   @override
   final String? title;
-// Tag? tag,
   @override
   final String? description;
+  final List<String>? _imageUrls;
   @override
-  final String? imageUrl;
+  List<String>? get imageUrls {
+    final value = _imageUrls;
+    if (value == null) return null;
+    if (_imageUrls is EqualUnmodifiableListView) return _imageUrls;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
-  final String? createdAt;
+  final DateTime? createdAt;
+  @override
+  final DateTime? updatedAt;
 
   @override
   String toString() {
-    return 'Activity(activityId: $activityId, userId: $userId, title: $title, description: $description, imageUrl: $imageUrl, createdAt: $createdAt)';
+    return 'Activity(activityId: $activityId, userId: $userId, title: $title, description: $description, imageUrls: $imageUrls, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -205,16 +228,25 @@ class _$ActivityImpl implements _Activity {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.imageUrl, imageUrl) ||
-                other.imageUrl == imageUrl) &&
+            const DeepCollectionEquality()
+                .equals(other._imageUrls, _imageUrls) &&
             (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, activityId, userId, title, description, imageUrl, createdAt);
+      runtimeType,
+      activityId,
+      userId,
+      title,
+      description,
+      const DeepCollectionEquality().hash(_imageUrls),
+      createdAt,
+      updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -236,8 +268,9 @@ abstract class _Activity implements Activity {
       final String? userId,
       final String? title,
       final String? description,
-      final String? imageUrl,
-      final String? createdAt}) = _$ActivityImpl;
+      final List<String>? imageUrls,
+      final DateTime? createdAt,
+      final DateTime? updatedAt}) = _$ActivityImpl;
 
   factory _Activity.fromJson(Map<String, dynamic> json) =
       _$ActivityImpl.fromJson;
@@ -246,14 +279,16 @@ abstract class _Activity implements Activity {
   String get activityId;
   @override
   String? get userId;
-  @override // String? icon,
+  @override
   String? get title;
-  @override // Tag? tag,
+  @override
   String? get description;
   @override
-  String? get imageUrl;
+  List<String>? get imageUrls;
   @override
-  String? get createdAt;
+  DateTime? get createdAt;
+  @override
+  DateTime? get updatedAt;
   @override
   @JsonKey(ignore: true)
   _$$ActivityImplCopyWith<_$ActivityImpl> get copyWith =>
