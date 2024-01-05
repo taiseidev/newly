@@ -6,6 +6,8 @@ final class SupabaseActivityRepository extends ActivityRepository {
   SupabaseActivityRepository();
 
   static const _tableName = 'activities';
+  static const _userId = 'user_id';
+  static const _activityId = 'activity_id';
 
   @override
   Future<void> insert(Activity activity) async {
@@ -18,9 +20,14 @@ final class SupabaseActivityRepository extends ActivityRepository {
     // ここでAPIを叩く場合はcurrentUserがnullではないことは確実なので、いちいちnullチェックしないように修正する。
     final userId = supabase.auth.currentUser?.id;
 
-    if (userId != null) {}
     final result =
-        await supabase.from(_tableName).select().eq('user_id', userId!);
+        await supabase.from(_tableName).select().eq(_userId, userId!);
+
     return result.map(Activity.fromJson).toList();
+  }
+
+  @override
+  Future<void> delete(String activityId) async {
+    await supabase.from(_tableName).delete().match({_activityId: activityId});
   }
 }

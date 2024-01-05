@@ -37,7 +37,9 @@ class HomePage extends HookConsumerWidget {
                           Text(activity.title ?? ''),
                           Text(activity.description ?? ''),
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () => ref
+                                .read(homeNotifierProvider.notifier)
+                                .deleteActivity(activity.activityId),
                             child: const Text('削除ボタン'),
                           ),
                         ],

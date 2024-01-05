@@ -52,4 +52,13 @@ final class ActivityService {
     }
     return activities;
   }
+
+  Future<void> delete(String activityId) async {
+    try {
+      await repository.delete(activityId);
+    } on Exception catch (e) {
+      logger.e(e);
+      throw AppException.general(e);
+    }
+  }
 }
