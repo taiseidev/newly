@@ -51,6 +51,15 @@
 		<string>LaunchScreen</string>
 		<key>UIMainStoryboardFile</key>
 		<string>Main</string>
+		<!-- カメラ関連 -->
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>This app requires to access your photo library</string>
+		<key>NSCameraUsageDescription</key>
+		<string>This app requires to add file to your camera</string>
+		<key>NSMicrophoneUsageDescription</key>
+		<string>This app requires to add file to your photo library
+			your microphone</string>
+		<!-- カメラ関連 -->
 		<key>UISupportedInterfaceOrientations</key>
 		<array>
 			<string>UIInterfaceOrientationPortrait</string>
