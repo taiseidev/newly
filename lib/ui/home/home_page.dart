@@ -16,6 +16,8 @@ class HomePage extends HookConsumerWidget {
 
     final titleController = useTextEditingController();
     final descriptionController = useTextEditingController();
+    final titleUpdateController = useTextEditingController();
+    final descriptionUpdateController = useTextEditingController();
 
     logger.i(state);
 
@@ -39,11 +41,11 @@ class HomePage extends HookConsumerWidget {
                           const Text('↓更新処理'),
                           const Text('タイトル'),
                           TextFormField(
-                            controller: titleController,
+                            controller: titleUpdateController,
                           ),
                           const Text('内容'),
                           TextFormField(
-                            controller: descriptionController,
+                            controller: descriptionUpdateController,
                           ),
                           ElevatedButton(
                             onPressed: () => ref
