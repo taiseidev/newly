@@ -32,7 +32,7 @@ final class ActivityService {
       // 画像保存処理
       await _uploadImages(
         activityId: activityId,
-        files: [],
+        files: files,
       );
 
       // リモートに保存した画像をurlを一覧で取得
