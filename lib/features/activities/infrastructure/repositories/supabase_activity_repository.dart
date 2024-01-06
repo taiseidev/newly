@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:nost/features/activities/domain/activity.dart';
 import 'package:nost/features/activities/domain/repositories/activity_repository.dart';
 import 'package:nost/main.dart';
@@ -38,5 +40,39 @@ final class SupabaseActivityRepository extends ActivityRepository {
   @override
   Future<void> delete(String activityId) async {
     await supabase.from(_tableName).delete().match({_activityId: activityId});
+  }
+
+  @override
+  Future<void> uploadImages({
+    required String activityId,
+    required List<File> files,
+  }) async {
+    final userId = supabase.auth.currentUser?.id;
+
+    final chunk = <Future<void>>[];
+    for (final file in files) {
+      final filePath = '$userId/$activityId/${file.path}';
+      final future = supabase.storage.from('activity').upload(filePath, file);
+      chunk.add(future);
+    }
+
+    await Future.wait(chunk);
+  }
+
+  @override
+  Future<List<String>> fetchImages({
+    required String activityId,
+    required List<String> paths,
+  }) async {
+    final userId = supabase.auth.currentUser?.id;
+
+    final urls = <String>[];
+    for (final path in paths) {
+      final filePath = '$userId/$activityId/$path';
+      final url = supabase.storage.from('activity').getPublicUrl(filePath);
+      urls.add(url);
+    }
+
+    return urls;
   }
 }

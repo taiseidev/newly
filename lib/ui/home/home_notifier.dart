@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:nost/features/activities/application/activity_service.dart';
 import 'package:nost/features/activities/domain/activity.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -15,12 +17,14 @@ class HomeNotifier extends _$HomeNotifier {
   Future<void> addActivity({
     required String title,
     required String description,
+    List<File>? files,
   }) async {
     state = const AsyncLoading();
     await AsyncValue.guard(
       () async => ref.read(activityServiceProvider).create(
             title: title,
             description: description,
+            files: files,
           ),
     );
     ref.invalidateSelf();

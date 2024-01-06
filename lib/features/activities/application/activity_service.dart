@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:nost/core/utils/logger.dart';
 import 'package:nost/core/utils/uuid_generator.dart';
 import 'package:nost/exceptions/app_exception.dart';
@@ -19,17 +21,32 @@ final class ActivityService {
   Future<void> create({
     required String title,
     required String description,
+    List<File>? files,
   }) async {
     final activityId = UuidGenerator.create();
     final now = DateTime.now();
+
+    List<String>? urls;
+
+    if (files != null) {
+      // 画像保存処理
+      await _uploadImages(
+        activityId: activityId,
+        files: [],
+      );
+
+      // リモートに保存した画像をurlを一覧で取得
+      urls = await _fetchImages(
+        activityId: activityId,
+        paths: files.map((file) => file.path).toList(),
+      );
+    }
 
     final activity = Activity(
       activityId: activityId,
       title: title,
       description: description,
-      imageUrls: [
-        'https://images.unsplash.com/photo-1588361861040-ac9b1018f6d5?q=80&w=3200&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      ],
+      imageUrls: urls,
       createdAt: now,
       updatedAt: now,
     );
@@ -85,5 +102,37 @@ final class ActivityService {
       logger.e(e);
       throw AppException.general(e);
     }
+  }
+
+  Future<void> _uploadImages({
+    required String activityId,
+    required List<File> files,
+  }) async {
+    try {
+      await repository.uploadImages(
+        activityId: activityId,
+        files: files,
+      );
+    } on Exception catch (e) {
+      logger.e(e);
+      throw AppException.general(e);
+    }
+  }
+
+  Future<List<String>> _fetchImages({
+    required String activityId,
+    required List<String> paths,
+  }) async {
+    late List<String> urls;
+    try {
+      urls = await repository.fetchImages(
+        activityId: activityId,
+        paths: paths,
+      );
+    } on Exception catch (e) {
+      logger.e(e);
+      throw AppException.general(e);
+    }
+    return urls;
   }
 }
