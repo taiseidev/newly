@@ -238,7 +238,7 @@ class _DrawerListTile extends StatelessWidget {
 }
 
 class _ThemeSetting extends ConsumerWidget {
-  _ThemeSetting({super.key});
+  _ThemeSetting();
 
   final List<Color> colors = [
     const Color(0xFF5555A9),
