@@ -90,7 +90,7 @@ class HomePage extends HookConsumerWidget {
                                   title: titleController.text,
                                   description: descriptionController.text,
                                 ),
-                            child: const Text('追加'),
+                            child: const Text('更新'),
                           ),
                           ElevatedButton(
                             onPressed: () => ref
@@ -150,6 +150,13 @@ class HomePage extends HookConsumerWidget {
                       ),
               child: const Text('追加'),
             ),
+          ),
+          ElevatedButton(
+            onPressed: () => ref.read(homeNotifierProvider.notifier).createTag(
+                  tagName: 'banana',
+                  isPrivate: false,
+                ),
+            child: const Text('タグ追加'),
           ),
         ],
       ),

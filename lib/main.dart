@@ -9,6 +9,8 @@ import 'package:nost/features/activities/domain/repositories/activity_repository
 import 'package:nost/features/activities/infrastructure/repositories/supabase_activity_repository.dart';
 import 'package:nost/features/auth/domain/repositories/auth_repository.dart';
 import 'package:nost/features/auth/infrastructure/repositories/supagase_auth_repository.dart';
+import 'package:nost/features/tags/domain/repository/tag_repository.dart';
+import 'package:nost/features/tags/infrastructure/supabase_tag_repository.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 final supabase = Supabase.instance.client;
@@ -49,6 +51,9 @@ List<Override> _getOverrides() {
       ),
       activityRepositoryProvider.overrideWith(
         (_) => SupabaseActivityRepository(),
+      ),
+      tagRepositoryProvider.overrideWith(
+        (_) => SupabaseTagRepository(),
       ),
     ];
   }
