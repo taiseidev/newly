@@ -16,65 +16,42 @@ class AppThemeNotifier extends _$AppThemeNotifier {
   ({ColorScheme light, ColorScheme dark}) build() {
     final lastAppThemeString = PreferenceKeyType.appTheme.getString();
     final lastAppTheme = _stringToAppTheme(lastAppThemeString);
-
-    return switch (lastAppTheme) {
-      ThemeType.harmony => (
-          light: lightHarmonyColorScheme,
-          dark: darkHarmonyColorScheme,
-        ),
-      ThemeType.oasis => (
-          light: lightOasisColorScheme,
-          dark: darkOasisColorScheme,
-        ),
-      ThemeType.serenity => (
-          light: lightSerenityColorScheme,
-          dark: darkSerenityColorScheme,
-        ),
-      ThemeType.sunset => (
-          light: lightSunsetColorScheme,
-          dark: darkSunsetColorScheme,
-        ),
-      ThemeType.zen => (
-          light: lightZenColorScheme,
-          dark: darkZenColorScheme,
-        ),
-      ThemeType.eclipse || _ => (
-          light: lightEclipseColorScheme,
-          dark: darkEclipseColorScheme,
-        ),
-    };
+    return getColorScheme(lastAppTheme);
   }
 
   Future<void> update(String appTheme) async {
     await PreferenceKeyType.appTheme.setString(appTheme);
     final theme = _stringToAppTheme(appTheme);
-    state = switch (theme) {
-      ThemeType.harmony => (
-          light: lightHarmonyColorScheme,
-          dark: darkHarmonyColorScheme,
-        ),
-      ThemeType.oasis => (
-          light: lightOasisColorScheme,
-          dark: darkOasisColorScheme,
-        ),
-      ThemeType.serenity => (
-          light: lightSerenityColorScheme,
-          dark: darkSerenityColorScheme,
-        ),
-      ThemeType.sunset => (
-          light: lightSunsetColorScheme,
-          dark: darkSunsetColorScheme,
-        ),
-      ThemeType.zen => (
-          light: lightZenColorScheme,
-          dark: darkZenColorScheme,
-        ),
-      ThemeType.eclipse || _ => (
-          light: lightEclipseColorScheme,
-          dark: darkEclipseColorScheme,
-        ),
-    };
+    state = getColorScheme(theme);
   }
+
+  ({ColorScheme light, ColorScheme dark}) getColorScheme(ThemeType? type) =>
+      switch (type) {
+        ThemeType.harmony => (
+            light: lightHarmonyColorScheme,
+            dark: darkHarmonyColorScheme,
+          ),
+        ThemeType.oasis => (
+            light: lightOasisColorScheme,
+            dark: darkOasisColorScheme,
+          ),
+        ThemeType.serenity => (
+            light: lightSerenityColorScheme,
+            dark: darkSerenityColorScheme,
+          ),
+        ThemeType.sunset => (
+            light: lightSunsetColorScheme,
+            dark: darkSunsetColorScheme,
+          ),
+        ThemeType.zen => (
+            light: lightZenColorScheme,
+            dark: darkZenColorScheme,
+          ),
+        ThemeType.eclipse || _ => (
+            light: lightEclipseColorScheme,
+            dark: darkEclipseColorScheme,
+          ),
+      };
 
   ThemeType? _stringToAppTheme(String? themeString) {
     return ThemeType.values.firstWhere(
