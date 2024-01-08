@@ -33,11 +33,11 @@ final class App extends HookConsumerWidget {
       localizationsDelegates: GlobalMaterialLocalizations.delegates,
       theme: getLightTheme(
         context,
-        appTheme.$1,
+        appTheme.light,
       ),
       darkTheme: getDarkTheme(
         context,
-        appTheme.$2,
+        appTheme.dark,
       ),
       builder: (context, child) => Stack(
         children: [

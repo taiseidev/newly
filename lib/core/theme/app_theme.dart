@@ -13,19 +13,34 @@ part 'app_theme.g.dart';
 @riverpod
 class AppThemeNotifier extends _$AppThemeNotifier {
   @override
-  (ColorScheme, ColorScheme) build() {
+  ({ColorScheme light, ColorScheme dark}) build() {
     final lastAppThemeString = PreferenceKeyType.appTheme.getString();
     final lastAppTheme = _stringToAppTheme(lastAppThemeString);
 
     return switch (lastAppTheme) {
-      ThemeType.harmony => (lightHarmonyColorScheme, darkHarmonyColorScheme),
-      ThemeType.oasis => (lightOasisColorScheme, darkOasisColorScheme),
-      ThemeType.serenity => (lightSerenityColorScheme, darkSerenityColorScheme),
-      ThemeType.sunset => (lightSunsetColorScheme, darkSunsetColorScheme),
-      ThemeType.zen => (lightZenColorScheme, darkZenColorScheme),
+      ThemeType.harmony => (
+          light: lightHarmonyColorScheme,
+          dark: darkHarmonyColorScheme,
+        ),
+      ThemeType.oasis => (
+          light: lightOasisColorScheme,
+          dark: darkOasisColorScheme,
+        ),
+      ThemeType.serenity => (
+          light: lightSerenityColorScheme,
+          dark: darkSerenityColorScheme,
+        ),
+      ThemeType.sunset => (
+          light: lightSunsetColorScheme,
+          dark: darkSunsetColorScheme,
+        ),
+      ThemeType.zen => (
+          light: lightZenColorScheme,
+          dark: darkZenColorScheme,
+        ),
       ThemeType.eclipse || _ => (
-          lightEclipseColorScheme,
-          darkEclipseColorScheme
+          light: lightEclipseColorScheme,
+          dark: darkEclipseColorScheme,
         ),
     };
   }
@@ -34,14 +49,29 @@ class AppThemeNotifier extends _$AppThemeNotifier {
     await PreferenceKeyType.appTheme.setString(appTheme);
     final theme = _stringToAppTheme(appTheme);
     state = switch (theme) {
-      ThemeType.harmony => (lightHarmonyColorScheme, darkHarmonyColorScheme),
-      ThemeType.oasis => (lightOasisColorScheme, darkOasisColorScheme),
-      ThemeType.serenity => (lightSerenityColorScheme, darkSerenityColorScheme),
-      ThemeType.sunset => (lightSunsetColorScheme, darkSunsetColorScheme),
-      ThemeType.zen => (lightZenColorScheme, darkZenColorScheme),
+      ThemeType.harmony => (
+          light: lightHarmonyColorScheme,
+          dark: darkHarmonyColorScheme,
+        ),
+      ThemeType.oasis => (
+          light: lightOasisColorScheme,
+          dark: darkOasisColorScheme,
+        ),
+      ThemeType.serenity => (
+          light: lightSerenityColorScheme,
+          dark: darkSerenityColorScheme,
+        ),
+      ThemeType.sunset => (
+          light: lightSunsetColorScheme,
+          dark: darkSunsetColorScheme,
+        ),
+      ThemeType.zen => (
+          light: lightZenColorScheme,
+          dark: darkZenColorScheme,
+        ),
       ThemeType.eclipse || _ => (
-          lightEclipseColorScheme,
-          darkEclipseColorScheme
+          light: lightEclipseColorScheme,
+          dark: darkEclipseColorScheme,
         ),
     };
   }
