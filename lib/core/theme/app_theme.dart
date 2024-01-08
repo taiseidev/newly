@@ -14,30 +14,51 @@ part 'app_theme.g.dart';
 class AppThemeNotifier extends _$AppThemeNotifier {
   @override
   (ColorScheme, ColorScheme) build() {
-    final lastAppTheme = PreferenceKeyType.appTheme.getString();
+    final lastAppThemeString = PreferenceKeyType.appTheme.getString();
+    final lastAppTheme = _stringToAppTheme(lastAppThemeString);
 
-    // TODO(taisei): 文字列部分をenumに変更
     return switch (lastAppTheme) {
-      'eclipse' => (lightEclipseColorScheme, darkEclipseColorScheme),
-      'harmony' => (lightHarmonyColorScheme, darkHarmonyColorScheme),
-      'oasis' => (lightOasisColorScheme, darkOasisColorScheme),
-      'serenity' => (lightSerenityColorScheme, darkSerenityColorScheme),
-      'sunset' => (lightSunsetColorScheme, darkSunsetColorScheme),
-      'zen' => (lightZenColorScheme, darkZenColorScheme),
-      _ => (lightEclipseColorScheme, darkEclipseColorScheme),
+      ThemeType.harmony => (lightHarmonyColorScheme, darkHarmonyColorScheme),
+      ThemeType.oasis => (lightOasisColorScheme, darkOasisColorScheme),
+      ThemeType.serenity => (lightSerenityColorScheme, darkSerenityColorScheme),
+      ThemeType.sunset => (lightSunsetColorScheme, darkSunsetColorScheme),
+      ThemeType.zen => (lightZenColorScheme, darkZenColorScheme),
+      ThemeType.eclipse || _ => (
+          lightEclipseColorScheme,
+          darkEclipseColorScheme
+        ),
     };
   }
 
   Future<void> update(String appTheme) async {
     await PreferenceKeyType.appTheme.setString(appTheme);
-    state = switch (appTheme) {
-      'eclipse' => (lightEclipseColorScheme, darkEclipseColorScheme),
-      'harmony' => (lightHarmonyColorScheme, darkHarmonyColorScheme),
-      'oasis' => (lightOasisColorScheme, darkOasisColorScheme),
-      'serenity' => (lightSerenityColorScheme, darkSerenityColorScheme),
-      'sunset' => (lightSunsetColorScheme, darkSunsetColorScheme),
-      'zen' => (lightZenColorScheme, darkZenColorScheme),
-      _ => (lightEclipseColorScheme, darkEclipseColorScheme),
+    final theme = _stringToAppTheme(appTheme);
+    state = switch (theme) {
+      ThemeType.harmony => (lightHarmonyColorScheme, darkHarmonyColorScheme),
+      ThemeType.oasis => (lightOasisColorScheme, darkOasisColorScheme),
+      ThemeType.serenity => (lightSerenityColorScheme, darkSerenityColorScheme),
+      ThemeType.sunset => (lightSunsetColorScheme, darkSunsetColorScheme),
+      ThemeType.zen => (lightZenColorScheme, darkZenColorScheme),
+      ThemeType.eclipse || _ => (
+          lightEclipseColorScheme,
+          darkEclipseColorScheme
+        ),
     };
   }
+
+  ThemeType? _stringToAppTheme(String? themeString) {
+    return ThemeType.values.firstWhere(
+      (e) => e.name == themeString,
+      orElse: () => ThemeType.eclipse,
+    );
+  }
+}
+
+enum ThemeType {
+  eclipse,
+  harmony,
+  oasis,
+  serenity,
+  sunset,
+  zen;
 }
