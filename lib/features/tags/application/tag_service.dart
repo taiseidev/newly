@@ -17,26 +17,18 @@ final class TagService {
   final TagRepository repository;
 
   Future<void> create({
-    required List<String> tagNames,
-    required List<bool> isPrivates,
+    required List<Tag> tags,
   }) async {
-    final chunk = <Future<void>>[];
+    final futures = tags.map(_processChunk).toList();
 
-    for (var i = 0; i < tagNames.length; i++) {
-      chunk.add(
-        _processChunk(tagNames[i], isPrivates[i]),
-      );
-    }
-
-    await Future.wait(chunk);
+    await Future.wait(futures);
   }
 
   Future<void> _processChunk(
-    String tagName,
-    bool isPrivate,
+    Tag tag,
   ) async {
     final tagId = UuidGenerator.create();
-    final isExist = await _checkTagExists(tagName);
+    final isExist = await _checkTagExists(tag.name);
 
     if (isExist) {
       // タグがすでに存在する場合は中間テーブル作成のみ
@@ -47,8 +39,8 @@ final class TagService {
     // クライアント側では中間テーブルを作成しない。
     await _insert(
       tagId: tagId,
-      tagName: tagName,
-      isPrivate: isPrivate,
+      tagName: tag.name,
+      isPrivate: tag.isPrivate,
     );
   }
 

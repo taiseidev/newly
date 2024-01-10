@@ -13,18 +13,18 @@ _$TagImpl _$$TagImplFromJson(Map<String, dynamic> json) => $checkedCreate(
         $checkKeys(
           json,
           allowedKeys: const [
-            'id',
             'name',
+            'id',
             'created_at',
             'user_id',
             'is_private'
           ],
         );
         final val = _$TagImpl(
-          id: $checkedConvert('id', (v) => v as String),
           name: $checkedConvert('name', (v) => v as String),
-          createdAt:
-              $checkedConvert('created_at', (v) => DateTime.parse(v as String)),
+          id: $checkedConvert('id', (v) => v as String?),
+          createdAt: $checkedConvert('created_at',
+              (v) => v == null ? null : DateTime.parse(v as String)),
           userId: $checkedConvert('user_id', (v) => v as String?),
           isPrivate: $checkedConvert('is_private', (v) => v as bool? ?? true),
         );
@@ -38,9 +38,9 @@ _$TagImpl _$$TagImplFromJson(Map<String, dynamic> json) => $checkedCreate(
     );
 
 Map<String, dynamic> _$$TagImplToJson(_$TagImpl instance) => <String, dynamic>{
-      'id': instance.id,
       'name': instance.name,
-      'created_at': instance.createdAt.toIso8601String(),
+      'id': instance.id,
+      'created_at': instance.createdAt?.toIso8601String(),
       'user_id': instance.userId,
       'is_private': instance.isPrivate,
     };

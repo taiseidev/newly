@@ -20,9 +20,9 @@ Tag _$TagFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Tag {
-  String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  DateTime get createdAt => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
   String? get userId => throw _privateConstructorUsedError;
   bool get isPrivate => throw _privateConstructorUsedError;
 
@@ -37,9 +37,9 @@ abstract class $TagCopyWith<$Res> {
       _$TagCopyWithImpl<$Res, Tag>;
   @useResult
   $Res call(
-      {String id,
-      String name,
-      DateTime createdAt,
+      {String name,
+      String? id,
+      DateTime? createdAt,
       String? userId,
       bool isPrivate});
 }
@@ -56,25 +56,25 @@ class _$TagCopyWithImpl<$Res, $Val extends Tag> implements $TagCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? name = null,
-    Object? createdAt = null,
+    Object? id = freezed,
+    Object? createdAt = freezed,
     Object? userId = freezed,
     Object? isPrivate = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: null == createdAt
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -94,9 +94,9 @@ abstract class _$$TagImplCopyWith<$Res> implements $TagCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String id,
-      String name,
-      DateTime createdAt,
+      {String name,
+      String? id,
+      DateTime? createdAt,
       String? userId,
       bool isPrivate});
 }
@@ -110,25 +110,25 @@ class __$$TagImplCopyWithImpl<$Res> extends _$TagCopyWithImpl<$Res, _$TagImpl>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? name = null,
-    Object? createdAt = null,
+    Object? id = freezed,
+    Object? createdAt = freezed,
     Object? userId = freezed,
     Object? isPrivate = null,
   }) {
     return _then(_$TagImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: null == createdAt
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -145,9 +145,9 @@ class __$$TagImplCopyWithImpl<$Res> extends _$TagCopyWithImpl<$Res, _$TagImpl>
 @JsonSerializable()
 class _$TagImpl implements _Tag {
   _$TagImpl(
-      {required this.id,
-      required this.name,
-      required this.createdAt,
+      {required this.name,
+      this.id,
+      this.createdAt,
       this.userId,
       this.isPrivate = true});
 
@@ -155,11 +155,11 @@ class _$TagImpl implements _Tag {
       _$$TagImplFromJson(json);
 
   @override
-  final String id;
-  @override
   final String name;
   @override
-  final DateTime createdAt;
+  final String? id;
+  @override
+  final DateTime? createdAt;
   @override
   final String? userId;
   @override
@@ -168,7 +168,7 @@ class _$TagImpl implements _Tag {
 
   @override
   String toString() {
-    return 'Tag(id: $id, name: $name, createdAt: $createdAt, userId: $userId, isPrivate: $isPrivate)';
+    return 'Tag(name: $name, id: $id, createdAt: $createdAt, userId: $userId, isPrivate: $isPrivate)';
   }
 
   @override
@@ -176,8 +176,8 @@ class _$TagImpl implements _Tag {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TagImpl &&
-            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.userId, userId) || other.userId == userId) &&
@@ -188,7 +188,7 @@ class _$TagImpl implements _Tag {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, name, createdAt, userId, isPrivate);
+      Object.hash(runtimeType, name, id, createdAt, userId, isPrivate);
 
   @JsonKey(ignore: true)
   @override
@@ -206,20 +206,20 @@ class _$TagImpl implements _Tag {
 
 abstract class _Tag implements Tag {
   factory _Tag(
-      {required final String id,
-      required final String name,
-      required final DateTime createdAt,
+      {required final String name,
+      final String? id,
+      final DateTime? createdAt,
       final String? userId,
       final bool isPrivate}) = _$TagImpl;
 
   factory _Tag.fromJson(Map<String, dynamic> json) = _$TagImpl.fromJson;
 
   @override
-  String get id;
-  @override
   String get name;
   @override
-  DateTime get createdAt;
+  String? get id;
+  @override
+  DateTime? get createdAt;
   @override
   String? get userId;
   @override

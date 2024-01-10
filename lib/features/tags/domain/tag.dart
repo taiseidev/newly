@@ -6,9 +6,9 @@ part 'tag.g.dart';
 @freezed
 class Tag with _$Tag {
   factory Tag({
-    required String id,
     required String name,
-    required DateTime createdAt,
+    String? id,
+    DateTime? createdAt,
     String? userId,
     @Default(true) bool isPrivate,
   }) = _Tag;

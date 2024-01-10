@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:nost/core/extension/async_value_ext.dart';
 import 'package:nost/core/utils/logger.dart';
+import 'package:nost/features/tags/domain/tag.dart';
 import 'package:nost/ui/home/home_notifier.dart';
 
 class HomePage extends HookConsumerWidget {
@@ -144,19 +145,15 @@ class HomePage extends HookConsumerWidget {
             child: ElevatedButton(
               onPressed: () =>
                   ref.read(homeNotifierProvider.notifier).addActivity(
-                        title: titleController.text,
-                        description: descriptionController.text,
-                        files: image.value ?? [],
-                      ),
+                title: titleController.text,
+                description: descriptionController.text,
+                files: image.value ?? [],
+                tags: [
+                  Tag(name: 'apple'),
+                ],
+              ),
               child: const Text('追加'),
             ),
-          ),
-          ElevatedButton(
-            onPressed: () => ref.read(homeNotifierProvider.notifier).createTag(
-                  tagName: 'banana',
-                  isPrivate: false,
-                ),
-            child: const Text('タグ追加'),
           ),
         ],
       ),

@@ -6,7 +6,7 @@ part of 'app_theme.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$appThemeNotifierHash() => r'3dfcae3fa96f0ab8b04d0fd7e2693d82ba1278c1';
+String _$appThemeNotifierHash() => r'c09f6f418b403fad26ae99d8c5da8b216495874c';
 
 /// See also [AppThemeNotifier].
 @ProviderFor(AppThemeNotifier)
